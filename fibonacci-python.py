@@ -5,14 +5,19 @@ import time
 
 A = 0  # Start Val A B 
 B = 1
-
-runFor = 1111 #nOfRuns
+global runFor 
+runFor = 10 #nOfRuns
 limString = 0 #set limit for int to string conversion // 0 for unlimited
 
 def setup():
+     global runFor 
      print('Hallo Welcome')
-
+     print('Set N off runs ')
+     inputVal = int(input())
+     runFor = inputVal
      print('Runs Fibonacci for',runFor,'Numbers')
+   
+
 
 
 
@@ -52,9 +57,9 @@ def printResult():
           print('│','Run Time seconds',endTime - startTime,),
           print('└─────────────────────────────────────────────────────────')
      elif  runFor == 0 : 
-          print('Error No Run. Run for set to wars Set to 0')
+          print('Error No Run. "Run for N" to wars Set to 0')
      else: 
-          print('Error No Run. ')
+          print('Error No Run.')
 
      
     
