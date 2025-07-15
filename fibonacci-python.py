@@ -67,4 +67,4 @@ def printResult():
 setup()
 calc()
 printResult()    
-time.sleep(10)
+time.sleep(5)
