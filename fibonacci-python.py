@@ -16,9 +16,17 @@ def setup():
      print('Hallo Welcome')
      print('Set N off runs ')
      
-     inputVal = int(input()) 
+     inputVal = input()
      
-     
+    
+     if   any(char.isdigit() for char in inputVal) is True:
+           print("Is InT") 
+     else :
+
+          print("Is not Valid InT")     
+          sys.exit()
+          
+     inputVal = int(inputVal)
      
      
 
