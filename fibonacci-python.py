@@ -94,7 +94,6 @@ def printResult():
     
 
 setup()
-if inputVal is not None:
-     calc()
+calc()
 printResult()    
 time.sleep(5)
