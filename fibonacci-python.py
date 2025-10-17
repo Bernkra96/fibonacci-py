@@ -83,9 +83,7 @@ def printResult():
           print('│','Start Time',startTime,'End Time',endTime,),
           print('│','Run Time seconds',endTime - startTime,),
           print('└─────────────────────────────────────────────────────────')
-     elif  inputVal is None : 
-          print('Error No Run. "Run for N" to wars Set to 0')
-     elif  runFor == 0 : 
+     elif  runFor == 0 or inputVal is None: 
           print('Error No Run. "Run for N" to wars Set to 0')
      else: 
           print('Error No Run.')
