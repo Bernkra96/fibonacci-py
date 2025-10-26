@@ -7,7 +7,8 @@ A = 0  # Start Val A B
 B = 1
 global runFor 
 global inputVal 
-runFor = 10 #nOfRuns
+
+
 limString = 0 #set limit for int to string conversion // 0 for unlimited
 
 def setup():
