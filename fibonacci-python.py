@@ -15,13 +15,13 @@ def setup():
      global runFor 
      global inputVal 
      print('Hallo Welcome')
-     print('Set N off runs ')
+     print('Set Number off runs ')
      
      inputVal = input()
      
     
      if   any(char.isdigit() for char in inputVal) is True:
-           print("Is InT") 
+           print("Is Valid InT") 
      else :
 
           print("Is not Valid InT")     
@@ -40,7 +40,7 @@ def setup():
     
     
      runFor = inputVal
-     print('Runs Fibonacci for',runFor,'Numbers')
+     print('Runs Fibonacci.Set to',runFor,'times')
    
 
 
