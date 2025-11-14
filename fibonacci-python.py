@@ -14,17 +14,17 @@ limString = 0 #set limit for int to string conversion // 0 for unlimited
 def setup():
      global runFor 
      global inputVal 
-     print('Hallo Welcome')
-     print('Set Number off runs ')
+     print('Hallo Welcome.')
+     print('Set Number off runs.')
      
      inputVal = input()
      
     
      if   any(char.isdigit() for char in inputVal) is True:
-           print("Is Valid InT") 
+           print("Is Valid InT.") 
      else :
 
-          print("Is not Valid InT")     
+          print("Is not Valid InT.")     
           sys.exit()
           
      inputVal = int(inputVal)
@@ -40,7 +40,7 @@ def setup():
     
     
      runFor = inputVal
-     print('Runs Fibonacci.Set to',runFor,'times')
+     print('Runs Fibonacci.Set to',runFor,'times.')
    
 
 
@@ -85,7 +85,7 @@ def printResult():
           print('│','Run Time seconds',endTime - startTime,),
           print('└─────────────────────────────────────────────────────────')
      elif  runFor == 0 or inputVal is None: 
-          print('Error No Run. "Run for N" to wars Set to 0')
+          print('Error No Run. "Run for N" to wars Set to 0.')
      else: 
           print('Error No Run.')
 
