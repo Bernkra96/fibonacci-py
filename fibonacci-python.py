@@ -15,11 +15,12 @@ def setup():
      global runFor 
      global inputVal 
      print('Hallo Welcome.')
+     print('To this Fibonacci Runner / Benchmark')
      print('Set Number off runs.')
      
      inputVal = input()
      
-    
+    s
      if   any(char.isdigit() for char in inputVal) is True:
            print("Is Valid InT.") 
      else :
@@ -50,7 +51,6 @@ def setup():
 def calc():  
      global A
      global B
-     
      global i
      global startTime
      global endTime
