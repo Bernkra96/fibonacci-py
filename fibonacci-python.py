@@ -20,14 +20,16 @@ def setup():
      
      inputVal = input()
      
-    s
+    
      if   any(char.isdigit() for char in inputVal) is True:
            print("Is Valid InT.") 
      else :
 
-          print("Is not Valid InT.")     
-          sys.exit()
+           print("Is not Valid InT.")     
+           sys.exit()
           
+      
+      
      inputVal = int(inputVal)
      
      
