@@ -15,7 +15,7 @@ def setup():
      global runFor 
      global inputVal 
      print('Hallo Welcome.')
-     print('To this Fibonacci Runner / Benchmark')
+     print('To this Fibonacci Runner / Benchmark.')
      print('Set Number off runs.')
      
      inputVal = input()
