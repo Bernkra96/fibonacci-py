@@ -15,19 +15,21 @@ def setup():
      global runFor 
      global inputVal 
      print('Hallo Welcome.')
-     print('To this Fibonacci Runner / Benchmark')
+     print('To this Fibonacci Runner / Benchmark.')
      print('Set Number off runs.')
      
      inputVal = input()
      
-    s
+    
      if   any(char.isdigit() for char in inputVal) is True:
            print("Is Valid InT.") 
      else :
 
-          print("Is not Valid InT.")     
-          sys.exit()
+           print("Is not Valid InT.")     
+           sys.exit()
           
+      
+      
      inputVal = int(inputVal)
      
      
