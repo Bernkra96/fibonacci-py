@@ -7,6 +7,7 @@ A = 0  # Start Val A B
 B = 1
 global runFor 
 global inputVal 
+global options 
 
 
 limString = 0 #set limit for int to string conversion // 0 for unlimited
@@ -17,12 +18,16 @@ def setup():
      print('Hallo Welcome.')
      print('To this Fibonacci Runner / Benchmark.')
      print('Set Number off runs.')
+     print("o for options") 
      
      inputVal = input()
      
     
      if   any(char.isdigit() for char in inputVal) is True:
            print("Is Valid InT.") 
+           inputVal = int(inputVal)
+     elif any(char.lower() == 'o' for char in inputVal):
+          options()
      else :
 
            print("Is not Valid InT.")     
@@ -30,7 +35,7 @@ def setup():
           
       
       
-     inputVal = int(inputVal)
+   
      
      
 
@@ -45,8 +50,8 @@ def setup():
      runFor = inputVal
      print('Runs Fibonacci.Set to',runFor,'times.')
    
-
-
+ 
+     
 
 
 
@@ -91,8 +96,21 @@ def printResult():
      else: 
           print('Error No Run.')
 
+
+def options():
+     print("Options") 
+     print("e for exit") 
+     inputVal = input()
      
-    
+     if any(char.lower() == 'e' for char in inputVal):
+          setup()
+     else :
+
+          print("Is not Valid ")     
+          sys.exit()
+          
+          
+     
 
 setup()
 calc()
