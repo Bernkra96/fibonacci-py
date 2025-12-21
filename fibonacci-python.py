@@ -104,13 +104,13 @@ def options():
      
      if any(char.lower() == 'e' for char in inputVal):
           setup()
-     elif  any(char.lower() == 'h' for char in inputVal):
+     elif  any(char.lower() == 'h' for char in inputVal):o
           print('Help')  
           print('o = Options')  
           print('Opens Options ')
           print('e = Exit ')  
           print('Exit Options ')    
-          ooptions()   
+          options()   
      else :
 
           print("Is not Valid ")     
