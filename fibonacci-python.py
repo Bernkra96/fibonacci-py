@@ -99,11 +99,18 @@ def printResult():
 
 def options():
      print("Options") 
-     print("e for exit") 
+     print("e for exit,h for help") 
      inputVal = input()
      
      if any(char.lower() == 'e' for char in inputVal):
           setup()
+     elif  any(char.lower() == 'h' for char in inputVal):
+          print('Help')  
+          print('o = Options')  
+          print('Opens Options ')
+          print('e = Exit ')  
+          print('Exit Options ')    
+          ooptions()   
      else :
 
           print("Is not Valid ")     
