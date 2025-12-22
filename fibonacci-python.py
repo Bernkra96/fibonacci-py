@@ -7,7 +7,9 @@ A = 0  # Start Val A B
 B = 1
 global runFor 
 global inputVal 
-global options 
+#Options preset
+optionsData = {"EndTimer": True,"EndTimerTime": 1,
+}
 
 
 limString = 0 #set limit for int to string conversion // 0 for unlimited
@@ -104,7 +106,7 @@ def options():
      
      if any(char.lower() == 'e' for char in inputVal):
           setup()
-     elif  any(char.lower() == 'h' for char in inputVal):o
+     elif  any(char.lower() == 'h' for char in inputVal):
           print('Help')  
           print('o = Options')  
           print('Opens Options ')
@@ -121,5 +123,7 @@ def options():
 
 setup()
 calc()
-printResult()    
-time.sleep(5)
+printResult()
+
+if optionsData["EndTimer"] == True :
+     time.sleep(optionsData["EndTimerTime"])
