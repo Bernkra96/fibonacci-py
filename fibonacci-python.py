@@ -3,7 +3,8 @@ import sys
 import time
 
 
-A = 0  # Start Val A B 
+A = 0  # Start Val A B s
+
 B = 1
 global runFor 
 global inputVal 
@@ -17,10 +18,11 @@ limString = 0 #set limit for int to string conversion // 0 for unlimited
 def setup():
      global runFor 
      global inputVal 
+     print('─────────────────────────────────────────────────────────'),
      print('Hallo Welcome.')
      print('To this Fibonacci Runner / Benchmark.')
      print('Set Number off runs.')
-     print("o for options") 
+     print("o for options,s for set up ") 
      
      inputVal = input()
      
@@ -29,7 +31,13 @@ def setup():
            print("Is Valid InT.") 
            inputVal = int(inputVal)
      elif any(char.lower() == 'o' for char in inputVal):
-          options()
+
+          options()     
+     elif any(char.lower() == 's' for char in inputVal):
+          for x in optionsData:
+           print (x, optionsData[x]  )  
+           
+          setup()     
      else :
 
            print("Is not Valid InT.")     
@@ -101,7 +109,7 @@ def printResult():
 
 def options():
      print("Options") 
-     print("e for exit,h for help") 
+     print("e for exit,h for help,i for info") 
      inputVal = input()
      
      if any(char.lower() == 'e' for char in inputVal):
@@ -113,6 +121,10 @@ def options():
           print('e = Exit ')  
           print('Exit Options ')    
           options()   
+     elif  any(char.lower() == 'i' for char in inputVal):
+          print('Info')  
+          print(optionsData) 
+          options()    
      else :
 
           print("Is not Valid ")     
@@ -124,6 +136,6 @@ def options():
 setup()
 calc()
 printResult()
-
+#EndTimer
 if optionsData["EndTimer"] == True :
      time.sleep(optionsData["EndTimerTime"])
