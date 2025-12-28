@@ -22,7 +22,7 @@ def setup():
      print('Hallo Welcome.')
      print('To this Fibonacci Runner / Benchmark.')
      print('Set Number off runs.')
-     print("o for options,s for set up ") 
+     print("o for options, s for set up ") 
      
      inputVal = input()
      
@@ -36,6 +36,8 @@ def setup():
      elif any(char.lower() == 's' for char in inputVal):
           for x in optionsData:
            print (x, optionsData[x]  )  
+           print(type(optionsData[x]),type(x))
+           updateSetting(optionsData , x )    
            
           setup()     
      else :
@@ -62,9 +64,6 @@ def setup():
    
  
      
-
-
-
 def calc():  
      global A
      global B
@@ -129,7 +128,12 @@ def options():
 
           print("Is not Valid ")     
           sys.exit()
-          
+
+def updateSetting(name , key ):    
+     print ("Update Setting" , name[key], key,type(name[key]),type(key))
+     
+
+
           
      
 
