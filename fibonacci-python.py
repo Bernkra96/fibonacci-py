@@ -35,8 +35,7 @@ def setup():
           options()     
      elif any(char.lower() == 's' for char in inputVal):
           for x in optionsData:
-           print (x, optionsData[x]  )  
-           print(type(optionsData[x]),type(x))
+           
            updateSetting(optionsData , x )    
            
           setup()     
@@ -62,7 +61,6 @@ def setup():
      runFor = inputVal
      print('Runs Fibonacci.Set to',runFor,'times.')
    
- 
      
 def calc():  
      global A
@@ -83,8 +81,6 @@ def calc():
      endTime = time.time() 
  
  #END Time 
-
-
 
 
 
@@ -130,7 +126,19 @@ def options():
           sys.exit()
 
 def updateSetting(name , key ):    
-     print ("Update Setting" , name[key], key,type(name[key]),type(key))
+   
+     match name[key]:
+          case bool():
+              print("Is a BoolStetting")
+              print("Name of Setting", key,"and is", name[key])
+          
+
+          case int():
+              print("Is IntSetting")
+              print("Name of Setting", key,"and is", name[key])
+          case _:
+               print("Error No Valid Format ")
+
      
 
 
