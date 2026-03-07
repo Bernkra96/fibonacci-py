@@ -12,9 +12,9 @@ global inputVal
 optionsData = {"EndTimer": True,"EndTimerTime": 1,
 }
 
-
+#Limit for int to string conversion
 limString = 0 #set limit for int to string conversion // 0 for unlimited
-
+sys.set_int_max_str_digits(limString) 
 def setup():
      global runFor 
      global inputVal 
