@@ -104,7 +104,7 @@ def printResult():
 
 def options():
      print("Options") 
-     print("e for exit,h for help,i for info") 
+     print("e for exit,h for help,i for info,u for update") 
      inputVal = input()
      
      if any(char.lower() == 'e' for char in inputVal):
@@ -114,16 +114,27 @@ def options():
           print('o = Options')  
           print('Opens Options ')
           print('e = Exit ')  
-          print('Exit Options ')    
+          print('Exit Options ')  
+          print('u = Exit ')  
+          print('Update Options ')    
           options()   
      elif  any(char.lower() == 'i' for char in inputVal):
           print('Info')  
           print(optionsData) 
-          options()    
+          options() 
+     elif  any(char.lower() == 'u' for char in inputVal):
+          print('Update')  
+          updaterOptions()     
      else :
 
           print("Is not Valid ")     
           sys.exit()
+          
+
+def updaterOptions():
+     print("Update witch Option ?")
+     print(optionsData) 
+     options()  
 
 def updateSetting(name , key ):    
    
