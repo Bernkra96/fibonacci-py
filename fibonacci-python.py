@@ -1,4 +1,4 @@
-# Fibonacci sequence
+"""Fibonacci sequence"""
 import sys
 import time
 
