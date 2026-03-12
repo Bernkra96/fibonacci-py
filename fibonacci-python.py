@@ -1,4 +1,5 @@
 """Fibonacci sequence"""
+
 import sys
 import time
 
@@ -9,7 +10,7 @@ B = 1
 global runFor 
 global inputVal 
 #Options preset
-optionsData = {"EndTimer": True,"EndTimerTime": 1,
+optionsData = {"EndTimer": True,"TimeEndTimer": 2
 }
 
 #Limit for int to string conversion
@@ -37,6 +38,7 @@ def setup():
           for x in optionsData:
            
            updateSetting(optionsData , x )    
+
            
           setup()     
      else :
@@ -132,9 +134,22 @@ def options():
           
 
 def updaterOptions():
+    
+     
      print("Update witch Option ?")
      print(optionsData) 
-     options()  
+     selectOptionsUserInput = input()
+   
+     if selectOptionsUserInput in optionsData:
+        print(selectOptionsUserInput,optionsData[selectOptionsUserInput] )
+        
+     
+     options() 
+     
+   
+     
+     
+     
 
 def updateSetting(name , key ):    
    
