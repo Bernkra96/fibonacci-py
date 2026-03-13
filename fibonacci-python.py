@@ -61,7 +61,7 @@ def setup():
     
     
      runFor = inputVal
-     print('Runs Fibonacci.Set to',runFor,'times.')
+     print(f'Runs Fibonacci.Set for {runFor} times.')
    
      
 def calc():  
@@ -91,17 +91,17 @@ def printResult():
      if 'i' in globals() or 'i' in locals() :
         
 
-          print('┌─────────────────────────────────────────────────────────'),
-          print('│','Set Number of Runs:',runFor,),
-          print('│','Run Number of Runs:',i+1,),
-          print('├─────────────────────────────────────────────────────────'),
-          print('│','Start Time',startTime,'End Time',endTime,),
-          print('│','Run Time seconds',endTime - startTime,),
-          print('└─────────────────────────────────────────────────────────')
+          print(f'┌─────────────────────────────────────────────────────────'),
+          print(f'│ Set Number of Runs: {runFor}'),
+          print(f'│ Run Number of Runs: {i+1}'),
+          print(f'├─────────────────────────────────────────────────────────'),
+          print(f'│ Start Time {startTime} End Time {endTime}'),
+          print(f'│ Run Time seconds {endTime - startTime}'),
+          print(f'└─────────────────────────────────────────────────────────')
      elif  runFor == 0 or inputVal is None: 
-          print('Error No Run. "Run for N" to wars Set to 0.')
+          print(f'Error No Run. "Run for N" to wars Set to 0.')
      else: 
-          print('Error No Run.')
+          print(f'Error No Run.')
 
 
 def options():
@@ -118,7 +118,7 @@ def options():
           print('e = Exit ')  
           print('Exit Options ')  
           print('u = Exit ')  
-          print('Update Options ')    
+          print(f'Update Options')    
           options()   
      elif  any(char.lower() == 'i' for char in inputVal):
           print('Info')  
@@ -158,12 +158,12 @@ def updateSetting(name , key ):
      match name[key]:
           case bool():
               print("Is a BoolStetting")
-              print("Name of Setting", key,"and is", name[key])
+              print('Name of Setting{key}and is, {name[key]}')
           
 
           case int():
               print("Is IntSetting")
-              print("Name of Setting", key,"and is", name[key])
+              print('Name of Setting{key}and is, {name[key]}')
           case _:
                print("Error No Valid Format ")
 
