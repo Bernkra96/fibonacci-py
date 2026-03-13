@@ -141,13 +141,14 @@ def updaterOptions():
      selectOptionsUserInput = input("Text(Option Name).: ")
    
      if selectOptionsUserInput in optionsDataSet:
-        print(selectOptionsUserInput,optionsDataSet[selectOptionsUserInput])
-        
+        updateSetting(optionsDataSet,selectOptionsUserInput)
      else: 
           print("No Valet input")
+          options()
+
         
      
-     options() 
+     
      
    
      
@@ -158,15 +159,16 @@ def updateSetting(name , key ):
    
      match name[key]:
           case bool():
-              print("Is a BoolStetting")
-              print('Name of Setting{key}and is, {name[key]}')
+              print("Is a Bool Stetting")
+              print(f'Name of Setting {key} and is, {name[key]}')
           
-
           case int():
-              print("Is IntSetting")
-              print('Name of Setting{key}and is, {name[key]}')
+              print("Is Int Setting")
+              print(f'Name of Setting {key} and is, {name[key]}')
           case _:
                print("Error No Valid Format ")
+ 
+     options() 
 
      
 
