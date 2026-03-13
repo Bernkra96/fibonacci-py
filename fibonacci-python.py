@@ -4,7 +4,7 @@ import sys
 import time
 
 
-A = 0  # Start Val A B s
+# Start Val A B s
 
 B = 1
 global runFor 
@@ -25,7 +25,7 @@ def setup():
      print('Set Number off runs.')
      print("o for options, s for set up ") 
      
-     inputVal = input()
+     inputVal = input("Number or text(Listed Only).: ")
      
     
      if   any(char.isdigit() for char in inputVal) is True:
@@ -107,7 +107,7 @@ def printResult():
 def options():
      print("Options") 
      print("e for exit,h for help,i for info,u for update") 
-     inputVal = input()
+     inputVal = input("Text(Listed Only).: ")
      
      if any(char.lower() == 'e' for char in inputVal):
           setup()
@@ -138,7 +138,7 @@ def updaterOptions():
      
      print("Update witch Option ?")
      print(optionsDataSet) 
-     selectOptionsUserInput = input()
+     selectOptionsUserInput = input("Text(Option Name).: ")
    
      if selectOptionsUserInput in optionsDataSet:
         print(selectOptionsUserInput,optionsDataSet[selectOptionsUserInput] )
