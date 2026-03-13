@@ -5,7 +5,7 @@ import time
 
 
 # Start Val A B s
-
+A = 0
 B = 1
 global runFor 
 global inputVal 
