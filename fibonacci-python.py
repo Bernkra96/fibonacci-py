@@ -10,7 +10,7 @@ B = 1
 global runFor 
 global inputVal 
 #Options preset
-optionsData = {"EndTimer": True,"TimeEndTimer": 2
+optionsDataSet = {"EndTimer": True,"TimeEndTimer": 2
 }
 
 #Limit for int to string conversion
@@ -35,9 +35,9 @@ def setup():
 
           options()     
      elif any(char.lower() == 's' for char in inputVal):
-          for x in optionsData:
+          for x in optionsDataSet:
            
-           updateSetting(optionsData , x )    
+           updateSetting(optionsDataSet , x )    
 
            
           setup()     
@@ -122,7 +122,7 @@ def options():
           options()   
      elif  any(char.lower() == 'i' for char in inputVal):
           print('Info')  
-          print(optionsData) 
+          print(optionsDataSet) 
           options() 
      elif  any(char.lower() == 'u' for char in inputVal):
           print('Update')  
@@ -137,11 +137,13 @@ def updaterOptions():
     
      
      print("Update witch Option ?")
-     print(optionsData) 
+     print(optionsDataSet) 
      selectOptionsUserInput = input()
    
-     if selectOptionsUserInput in optionsData:
-        print(selectOptionsUserInput,optionsData[selectOptionsUserInput] )
+     if selectOptionsUserInput in optionsDataSet:
+        print(selectOptionsUserInput,optionsDataSet[selectOptionsUserInput] )
+     else: 
+          print("No Valet input")
         
      
      options() 
@@ -175,5 +177,5 @@ setup()
 calc()
 printResult()
 #EndTimer
-if optionsData["EndTimer"] == True :
-     time.sleep(optionsData["EndTimerTime"])
+if optionsDataSet["EndTimer"] == True :
+     time.sleep(optionsDataSet["TimeEndTimer"])
