@@ -141,7 +141,8 @@ def updaterOptions():
      selectOptionsUserInput = input("Text(Option Name).: ")
    
      if selectOptionsUserInput in optionsDataSet:
-        print(selectOptionsUserInput,optionsDataSet[selectOptionsUserInput] )
+        print(selectOptionsUserInput,optionsDataSet[selectOptionsUserInput])
+        
      else: 
           print("No Valet input")
         
