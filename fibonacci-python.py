@@ -1,20 +1,21 @@
-# Fibonacci sequence
+"""Fibonacci sequence"""
+
 import sys
 import time
 
 
-A = 0  # Start Val A B s
-
+# Start Val A B s
+A = 0
 B = 1
 global runFor 
 global inputVal 
 #Options preset
-optionsData = {"EndTimer": True,"EndTimerTime": 1,
+optionsDataSet = {"EndTimer": True,"TimeEndTimer": 2
 }
 
-
+#Limit for int to string conversion
 limString = 0 #set limit for int to string conversion // 0 for unlimited
-
+sys.set_int_max_str_digits(limString) 
 def setup():
      global runFor 
      global inputVal 
@@ -23,45 +24,35 @@ def setup():
      print('To this Fibonacci Runner / Benchmark.')
      print('Set Number off runs.')
      print("o for options, s for set up ") 
-     
-     inputVal = input()
+
+     while True:
+          inputVal = input("Number or text(Listed Only).: ")
      
     
-     if   any(char.isdigit() for char in inputVal) is True:
+          if   any(char.isdigit() for char in inputVal) is True:
            print("Is Valid InT.") 
            inputVal = int(inputVal)
-     elif any(char.lower() == 'o' for char in inputVal):
+           
+           runFor = inputVal
+           print(f'Runs Fibonacci.Set for {runFor} times.')
+           break
+           
+          elif any(char.lower() == 'o' for char in inputVal):
 
-          options()     
-     elif any(char.lower() == 's' for char in inputVal):
-          for x in optionsData:
+                options()    
+                break 
+          elif any(char.lower() == 's' for char in inputVal):
            
-           updateSetting(optionsData , x )    
+           print(optionsDataSet)   
            
-          setup()     
-     else :
+           setup()  
+           break
+           
+          else :
 
            print("Is not Valid InT.")     
-           sys.exit()
+           
           
-      
-      
-   
-     
-     
-
-     
-
-     
-
-    
-    
-    
-    
-     runFor = inputVal
-     print('Runs Fibonacci.Set to',runFor,'times.')
-   
-     
 def calc():  
      global A
      global B
@@ -83,71 +74,102 @@ def calc():
  #END Time 
 
 
-
 def printResult(): 
       
      if 'i' in globals() or 'i' in locals() :
         
 
-          print('┌─────────────────────────────────────────────────────────'),
-          print('│','Set Number of Runs:',runFor,),
-          print('│','Run Number of Runs:',i+1,),
-          print('├─────────────────────────────────────────────────────────'),
-          print('│','Start Time',startTime,'End Time',endTime,),
-          print('│','Run Time seconds',endTime - startTime,),
-          print('└─────────────────────────────────────────────────────────')
+          print(f'┌─────────────────────────────────────────────────────────'),
+          print(f'│ Set Number of Runs: {runFor}'),
+          print(f'│ Run Number of Runs: {i+1}'),
+          print(f'├─────────────────────────────────────────────────────────'),
+          print(f'│ Start Time {startTime} End Time {endTime}'),
+          print(f'│ Run Time seconds {endTime - startTime}'),
+          print(f'└─────────────────────────────────────────────────────────')
      elif  runFor == 0 or inputVal is None: 
-          print('Error No Run. "Run for N" to wars Set to 0.')
+          print(f'Error No Run. "Run for N" to wars Set to 0.')
      else: 
-          print('Error No Run.')
+          print(f'Error No Run.')
 
 
 def options():
      print("Options") 
-     print("e for exit,h for help,i for info") 
-     inputVal = input()
+     print("e for exit,h for help,i for info,u for update") 
+    
+     while True:
+          inputVal = input("Text(Listed Only).: ")
+          
+          if any(char.lower() == 'e' for char in inputVal):
+               setup()
+               break
+          elif  any(char.lower() == 'h' for char in inputVal):
+               print('Help')  
+               print('o = Options')  
+               print('Opens Options ')
+               print('e = Exit ')  
+               print('Exit Options ')  
+               print('u = Exit ')  
+               print(f'Update Options')    
+               
+          elif  any(char.lower() == 'i' for char in inputVal):
+               print('Info')  
+               print(optionsDataSet) 
+               
+          elif  any(char.lower() == 'u' for char in inputVal):
+               print('Update')  
+               updaterOptions() 
+               break    
+          else :
+
+             print("Is not Valid ")     
+          
+          
+
+def updaterOptions():
+     while True:
+               
      
-     if any(char.lower() == 'e' for char in inputVal):
-          setup()
-     elif  any(char.lower() == 'h' for char in inputVal):
-          print('Help')  
-          print('o = Options')  
-          print('Opens Options ')
-          print('e = Exit ')  
-          print('Exit Options ')    
-          options()   
-     elif  any(char.lower() == 'i' for char in inputVal):
-          print('Info')  
-          print(optionsData) 
-          options()    
-     else :
+          print("Update witch Option ?")
+          print(optionsDataSet) 
+          print("Put Option Name in or e for exit") 
 
-          print("Is not Valid ")     
-          sys.exit()
+          selectOptionsUserInput = input("Text(Option Name).: ")
 
-def updateSetting(name , key ):    
-   
+         
+          if selectOptionsUserInput in optionsDataSet:
+               updateSetting(optionsDataSet,selectOptionsUserInput)
+               break
+          elif any(char.lower() == 'e' for char in selectOptionsUserInput):
+               options()
+               break
+          else: 
+           print("No Valet input")
+          
+
+        
+def updateSetting(name , keyData ):    
+
+
+     key = keyData
+     
      match name[key]:
           case bool():
-              print("Is a BoolStetting")
-              print("Name of Setting", key,"and is", name[key])
-          
-
+              print("Is a Bool Stetting")
+              print(f'Name of Setting {key} and is, {name[key]}')
+              
           case int():
-              print("Is IntSetting")
-              print("Name of Setting", key,"and is", name[key])
+              print("Is Int Setting")
+              print(f'Name of Setting {key} and is, {name[key]}')
           case _:
                print("Error No Valid Format ")
-
+     options()        
+ 
      
 
-
-          
-     
 
 setup()
 calc()
 printResult()
 #EndTimer
-if optionsData["EndTimer"] == True :
-     time.sleep(optionsData["EndTimerTime"])
+if optionsDataSet["EndTimer"] == True :
+     time.sleep(optionsDataSet["TimeEndTimer"])

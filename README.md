@@ -1,2 +1,2 @@
 A fibonacci Runner 
-Can be used as a Bechmark
+Can be used as a Benchmark
