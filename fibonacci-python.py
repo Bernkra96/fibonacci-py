@@ -158,14 +158,42 @@ def updateSetting(name , keyData ):
                case bool():
                     print("Is a Bool Stetting")
                     print(f'Name of Setting {key} and is, {name[key]}')
-                    forBoolInput = input("Type true or False.: ")
-                    break
+                    
+                    forBoolInput = input("Type true or false.: ")
+                    if forBoolInput == 'true':
+                      optionsDataSet["EndTimer"] = True
+                      print(f"Set to { optionsDataSet["EndTimer"]}")
+                      
+                      break
+                    
+                    elif forBoolInput == 'false':
+                         optionsDataSet["EndTimer"] = False
+                         print(f"Set to { optionsDataSet["EndTimer"]}")
+
+                         break
+              
+                    else: 
+                         print("No Valet input") 
+                         
+           
+               
+          
+                
+              
+                        
               
                case int():
                     print("Is Int Setting")
                     print(f'Name of Setting {key} and is, {name[key]}')
                     forIntInput = input("Type Number.: ")
-                    break
+                    
+                    if any(char.isdigit() for char in forIntInput) is True:
+                         optionsDataSet["TimeEndTimer"] = int(forIntInput)
+                         print(f"Set to { optionsDataSet["TimeEndTimer"]}")
+                         break
+                    else: 
+                         print("No Valet input") 
+                         
                case _:
                     print("Error No Valid Format ")
 
