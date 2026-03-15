@@ -10,7 +10,8 @@ B = 1
 global runFor 
 global inputVal 
 #Options preset
-optionsDataSet = {"EndTimer": True,"TimeEndTimer": 2
+optionsDataSet = {"EndTimer": True,"TimeEndTimer": 2 , "PrintEndResult" : True
+               
 }
 
 #Limit for int to string conversion
@@ -76,7 +77,7 @@ def calc():
 
 def printResult(): 
       
-     if 'i' in globals() or 'i' in locals() :
+     if 'i' in globals() and optionsDataSet["PrintEndResult"] == True or 'i' in locals() and optionsDataSet["PrintEndResult"] == True:
         
 
           print(f'┌─────────────────────────────────────────────────────────'),
@@ -88,8 +89,12 @@ def printResult():
           print(f'└─────────────────────────────────────────────────────────')
      elif  runFor == 0 or inputVal is None: 
           print(f'Error No Run. "Run for N" to wars Set to 0.')
-     else: 
-          print(f'Error No Run.')
+   
+         
+     
+
+
+         
 
 
 def options():
@@ -161,15 +166,15 @@ def updateSetting(name , keyData ):
                     
                     forBoolInput = input("Type true or false.: ")
                     if forBoolInput == 'true':
-                      optionsDataSet["EndTimer"] = True
-                      print(f"Set to { optionsDataSet["EndTimer"]}")
+                      optionsDataSet[key] = True
+                      print(f"Set to { optionsDataSet[key]}")
                       
                       break
                     
                     elif forBoolInput == 'false':
-                         optionsDataSet["EndTimer"] = False
-                         print(f"Set to { optionsDataSet["EndTimer"]}")
-
+                         optionsDataSet[key] = False
+                         print(f"Set to { optionsDataSet[key]}")
+ 
                          break
               
                     else: 
@@ -188,9 +193,9 @@ def updateSetting(name , keyData ):
                     forIntInput = input("Type Number.: ")
                     
                     if any(char.isdigit() for char in forIntInput) is True:
-                         optionsDataSet["TimeEndTimer"] = int(forIntInput)
-                         print(f"Set to { optionsDataSet["TimeEndTimer"]}")
-                         break
+                           optionsDataSet[key] = int(forIntInput)
+                           print(f"Set to { optionsDataSet[key]}")
+                           break
                     else: 
                          print("No Valet input") 
                          
@@ -203,7 +208,7 @@ def updateSetting(name , keyData ):
 
 
 setup()
-calc()
+calc()    
 printResult()
 #EndTimer
 if optionsDataSet["EndTimer"] == True :
