@@ -148,20 +148,27 @@ def updaterOptions():
 
         
 def updateSetting(name , keyData ):    
-
-
+     
      key = keyData
      
-     match name[key]:
-          case bool():
-              print("Is a Bool Stetting")
-              print(f'Name of Setting {key} and is, {name[key]}')
+     while True:
+          
+     
+          match name[key]:
+               case bool():
+                    print("Is a Bool Stetting")
+                    print(f'Name of Setting {key} and is, {name[key]}')
+                    forBoolInput = input("Type true or False.: ")
+                    break
               
-          case int():
-              print("Is Int Setting")
-              print(f'Name of Setting {key} and is, {name[key]}')
-          case _:
-               print("Error No Valid Format ")
+               case int():
+                    print("Is Int Setting")
+                    print(f'Name of Setting {key} and is, {name[key]}')
+                    forIntInput = input("Type Number.: ")
+                    break
+               case _:
+                    print("Error No Valid Format ")
+
      options()        
  
      
