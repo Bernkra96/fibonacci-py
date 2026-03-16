@@ -10,7 +10,8 @@ B = 1
 global runFor 
 global inputVal 
 #Options preset
-optionsDataSet = {"EndTimer": True,"TimeEndTimer": 2
+optionsDataSet = {"EndTimer": True,"TimeEndTimer": 2 , "PrintEndResult" : True
+               
 }
 
 #Limit for int to string conversion
@@ -76,7 +77,7 @@ def calc():
 
 def printResult(): 
       
-     if 'i' in globals() or 'i' in locals() :
+     if 'i' in globals() and optionsDataSet["PrintEndResult"] == True or 'i' in locals() and optionsDataSet["PrintEndResult"] == True:
         
 
           print(f'┌─────────────────────────────────────────────────────────'),
@@ -88,8 +89,12 @@ def printResult():
           print(f'└─────────────────────────────────────────────────────────')
      elif  runFor == 0 or inputVal is None: 
           print(f'Error No Run. "Run for N" to wars Set to 0.')
-     else: 
-          print(f'Error No Run.')
+   
+         
+     
+
+
+         
 
 
 def options():
@@ -148,27 +153,62 @@ def updaterOptions():
 
         
 def updateSetting(name , keyData ):    
-
-
+     
      key = keyData
      
-     match name[key]:
-          case bool():
-              print("Is a Bool Stetting")
-              print(f'Name of Setting {key} and is, {name[key]}')
+     while True:
+          
+     
+          match name[key]:
+               case bool():
+                    print("Is a Bool Stetting")
+                    print(f'Name of Setting {key} and is, {name[key]}')
+                    
+                    forBoolInput = input("Type true or false.: ")
+                    if forBoolInput == 'true':
+                      optionsDataSet[key] = True
+                      print(f"Set to { optionsDataSet[key]}")
+                      
+                      break
+                    
+                    elif forBoolInput == 'false':
+                         optionsDataSet[key] = False
+                         print(f"Set to { optionsDataSet[key]}")
+ 
+                         break
               
-          case int():
-              print("Is Int Setting")
-              print(f'Name of Setting {key} and is, {name[key]}')
-          case _:
-               print("Error No Valid Format ")
+                    else: 
+                         print("No Valet input") 
+                         
+           
+               
+          
+                
+              
+                        
+              
+               case int():
+                    print("Is Int Setting")
+                    print(f'Name of Setting {key} and is, {name[key]}')
+                    forIntInput = input("Type Number.: ")
+                    
+                    if any(char.isdigit() for char in forIntInput) is True:
+                           optionsDataSet[key] = int(forIntInput)
+                           print(f"Set to { optionsDataSet[key]}")
+                           break
+                    else: 
+                         print("No Valet input") 
+                         
+               case _:
+                    print("Error No Valid Format ")
+
      options()        
  
      
 
 
 setup()
-calc()
+calc()    
 printResult()
 #EndTimer
 if optionsDataSet["EndTimer"] == True :
