@@ -10,7 +10,7 @@ B = 1
 global runFor 
 global inputVal 
 #Options preset
-optionsDataSet = {"EndTimer": True,"TimeEndTimer": 2 , "PrintEndResult" : True
+optionsDataSet = {"EndTimer": True,"TimeEndTimer": 2 , "PrintEndResult" : True , "SaveEndResult" : True
                
 }
 
@@ -76,7 +76,7 @@ def calc():
 
 
 def printResult(): 
-      
+     
      if 'i' in globals() and optionsDataSet["PrintEndResult"] == True or 'i' in locals() and optionsDataSet["PrintEndResult"] == True:
         
 
@@ -87,6 +87,21 @@ def printResult():
           print(f'│ Start Time {startTime} End Time {endTime}'),
           print(f'│ Run Time seconds {endTime - startTime}'),
           print(f'└─────────────────────────────────────────────────────────')
+     elif  runFor == 0 or inputVal is None: 
+          print(f'Error No Run. "Run for N" to wars Set to 0.') 
+   
+     if 'i' in globals() and optionsDataSet["PrintEndResult"] == True or 'i' in locals() and optionsDataSet["SaveEndResult"] == True:
+          resultFile = open("result.txt", "w",encoding='utf-8')
+         
+          print(f'┌─────────────────────────────────────────────────────────', file=resultFile ),
+          print(f'│ Set Number of Runs: {runFor}', file=resultFile ),
+          print(f'│ Run Number of Runs: {i+1}',file=resultFile ),
+          print(f'├─────────────────────────────────────────────────────────',file=resultFile ),
+          print(f'│ Start Time {startTime} End Time {endTime}',file=resultFile ),
+          print(f'│ Run Time seconds {endTime - startTime}',file=resultFile ),
+          print(f'└─────────────────────────────────────────────────────────',file=resultFile  )
+          
+          resultFile.close
      elif  runFor == 0 or inputVal is None: 
           print(f'Error No Run. "Run for N" to wars Set to 0.')
    
