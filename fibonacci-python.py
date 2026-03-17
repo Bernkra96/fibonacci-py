@@ -90,7 +90,7 @@ def printResult():
      elif  runFor == 0 or inputVal is None: 
           print(f'Error No Run. "Run for N" to wars Set to 0.') 
    
-     if 'i' in globals() and optionsDataSet["PrintEndResult"] == True or 'i' in locals() and optionsDataSet["SaveEndResult"] == True:
+     if 'i' in globals() and optionsDataSet["SaveEndResult"] == True or 'i' in locals() and optionsDataSet["SaveEndResult"] == True:
           resultFile = open("result.txt", "w",encoding='utf-8')
          
           print(f'┌─────────────────────────────────────────────────────────', file=resultFile ),
