@@ -6,16 +6,18 @@ import time
 
 
 # Start Val A B s
+
 A = 0
 B = 1
 global runFor 
 global inputVal 
-#Options preset
-optionsDataSet = {"EndTimer": True,"TimeEndTimer": 2 , "PrintEndResult" : True , "SaveEndResult" : True
-               
-}
 
+#Options preset
+
+optionsDataSet = {"EndTimer": True,"TimeEndTimer": 2 , "PrintEndResult" : True , "SaveEndResult" : True}
+          
 #Limit for int to string conversion
+
 limString = 0 #set limit for int to string conversion // 0 for unlimited
 sys.set_int_max_str_digits(limString) 
 def setup():
@@ -61,7 +63,9 @@ def calc():
      global i
      global startTime
      global endTime
+    
      startTime = time.time() #Start Time 
+    
      for  i in range(runFor):
      
           C = A + B
@@ -88,7 +92,9 @@ def printResult():
           print(f'│ Start Time {startTime} End Time {endTime}'),
           print(f'│ Run Time seconds {endTime - startTime}'),
           print(f'└─────────────────────────────────────────────────────────')
+
      elif  runFor == 0 or inputVal is None: 
+          
           print(f'Error No Run. "Run for N" to wars Set to 0.') 
    
      if 'i' in globals() and optionsDataSet["SaveEndResult"] == True or 'i' in locals() and optionsDataSet["SaveEndResult"] == True:
@@ -104,18 +110,12 @@ def printResult():
           print(f'│ Run Time seconds {endTime - startTime}',file=resultFile ),
           print(f'├──────────────────────────────────────────────────────────────────────────',file=resultFile ),
           print(f'│ By Bernkra                Git https://github.com/Bernkra96/fibonacci-py  ',file=resultFile )
-          print(f'└──────────────────────────────────────────────────────────────────────────',file=resultFile  )
+          print(f'└──────────────────────────────────────────────────────────────────────────',file=resultFile )
           
           
           resultFile.close
      elif  runFor == 0 or inputVal is None: 
           print(f'Error No Run. "Run for N" to wars Set to 0.')
-   
-         
-     
-
-
-         
 
 
 def options():
@@ -150,7 +150,6 @@ def options():
              print("Is not Valid ")     
           
           
-
 def updaterOptions():
      while True:
                
@@ -226,8 +225,6 @@ def updateSetting(name , keyData ):
      options()        
  
      
-
-
 setup()
 calc()    
 printResult()
