@@ -1,5 +1,6 @@
 """Fibonacci sequence"""
 
+
 import sys
 import time
 
@@ -93,13 +94,18 @@ def printResult():
      if 'i' in globals() and optionsDataSet["SaveEndResult"] == True or 'i' in locals() and optionsDataSet["SaveEndResult"] == True:
           resultFile = open("result.txt", "w",encoding='utf-8')
          
-          print(f'┌─────────────────────────────────────────────────────────', file=resultFile ),
+          print(f'┌──────────────────────────────────────────────────────────────────────────', file=resultFile ),
+          print(f'│ Fibonacci Runner / Benchmark Result',file=resultFile )
+          print(f'├──────────────────────────────────────────────────────────────────────────',file=resultFile ), 
           print(f'│ Set Number of Runs: {runFor}', file=resultFile ),
           print(f'│ Run Number of Runs: {i+1}',file=resultFile ),
-          print(f'├─────────────────────────────────────────────────────────',file=resultFile ),
+          print(f'├──────────────────────────────────────────────────────────────────────────',file=resultFile ),
           print(f'│ Start Time {startTime} End Time {endTime}',file=resultFile ),
           print(f'│ Run Time seconds {endTime - startTime}',file=resultFile ),
-          print(f'└─────────────────────────────────────────────────────────',file=resultFile  )
+          print(f'├──────────────────────────────────────────────────────────────────────────',file=resultFile ),
+          print(f'│ By Bernkra                Git https://github.com/Bernkra96/fibonacci-py  ',file=resultFile )
+          print(f'└──────────────────────────────────────────────────────────────────────────',file=resultFile  )
+          
           
           resultFile.close
      elif  runFor == 0 or inputVal is None: 
