@@ -14,7 +14,7 @@ global inputVal
 
 #Options preset
 
-optionsDataSet = {"EndTimer": True,"TimeEndTimer": 2 , "PrintEndResult" : True , "SaveEndResult" : True}
+optionsDataSet = {"EndTimer": { "val": True},"TimeEndTimer":  { "val": 2} , "PrintEndResult" : { "val":  True }, "SaveEndResult" : {"val" : True}}
           
 #Limit for int to string conversion
 
@@ -82,7 +82,7 @@ def calc():
 
 def printResult(): 
      
-     if 'i' in globals() and optionsDataSet["PrintEndResult"] == True or 'i' in locals() and optionsDataSet["PrintEndResult"] == True:
+     if 'i' in globals() and optionsDataSet["PrintEndResult"]["val"] == True or 'i' in locals() and optionsDataSet["PrintEndResult"]["val"] == True:
         
 
           print(f'┌─────────────────────────────────────────────────────────'),
@@ -97,7 +97,8 @@ def printResult():
           
           print(f'Error No Run. "Run for N" to wars Set to 0.') 
    
-     if 'i' in globals() and optionsDataSet["SaveEndResult"] == True or 'i' in locals() and optionsDataSet["SaveEndResult"] == True:
+     if 'i' in globals() and optionsDataSet["SaveEndResult"]["val"] == True or 'i' in locals() and optionsDataSet["SaveEndResult"]["val"] == True:
+         
           resultFile = open("result.txt", "w",encoding='utf-8')
          
           print(f'┌──────────────────────────────────────────────────────────────────────────', file=resultFile ),
@@ -114,7 +115,9 @@ def printResult():
           
           
           resultFile.close
+    
      elif  runFor == 0 or inputVal is None: 
+       
           print(f'Error No Run. "Run for N" to wars Set to 0.')
 
 
@@ -156,6 +159,7 @@ def updaterOptions():
      
           print("Update witch Option ?")
           print(optionsDataSet) 
+
           print("Put Option Name in or e for exit") 
 
           selectOptionsUserInput = input("Text(Option Name).: ")
@@ -179,21 +183,22 @@ def updateSetting(name , keyData ):
      while True:
           
      
-          match name[key]:
+          match name[key]["val"]:
+               
                case bool():
                     print("Is a Bool Stetting")
-                    print(f'Name of Setting {key} and is, {name[key]}')
+                    print(f'Name of Setting {key} and is, {name[key]["val"]}')
                     
                     forBoolInput = input("Type true or false.: ")
                     if forBoolInput == 'true':
-                      optionsDataSet[key] = True
+                      optionsDataSet[key]["val"] = True
                       print(f"Set to { optionsDataSet[key]}")
                       
                       break
                     
                     elif forBoolInput == 'false':
-                         optionsDataSet[key] = False
-                         print(f"Set to { optionsDataSet[key]}")
+                         optionsDataSet[key]["val"] = False
+                         print(f"Set to { optionsDataSet[key]["val"]}")
  
                          break
               
@@ -201,20 +206,14 @@ def updateSetting(name , keyData ):
                          print("No Valet input") 
                          
            
-               
-          
-                
-              
-                        
-              
                case int():
                     print("Is Int Setting")
-                    print(f'Name of Setting {key} and is, {name[key]}')
+                    print(f'Name of Setting {key} and is, {name[key]["val"]}')
                     forIntInput = input("Type Number.: ")
                     
                     if any(char.isdigit() for char in forIntInput) is True:
-                           optionsDataSet[key] = int(forIntInput)
-                           print(f"Set to { optionsDataSet[key]}")
+                           optionsDataSet[key]["val"] = int(forIntInput)
+                           print(f"Set to { optionsDataSet[key]["val"]}")
                            break
                     else: 
                          print("No Valet input") 
