@@ -14,7 +14,7 @@ global inputVal
 
 #Options preset
 
-optionsDataSet = {"EndTimer": { "val": True},"TimeEndTimer":  { "val": 2} , "PrintEndResult" : { "val":  True }, "SaveEndResult" : {"val" : True}}
+optionsDataSet = {"EndTimer": { "val": True,},"TimeEndTimer":  { "val": 2} , "PrintEndResult" : { "val":  True }, "SaveEndResult" : {"val" : True}}
           
 #Limit for int to string conversion
 
@@ -47,10 +47,14 @@ def setup():
                 break 
           elif any(char.lower() == 's' for char in inputVal):
            
-           print(optionsDataSet)   
-           
-           setup()  
-           break
+            print("Update witch Option ?")
+         
+          for i in range(int(len(optionsDataSet))):
+             key = list(optionsDataSet.keys())[i]
+             print(f"DataName {key} and DataValue {optionsDataSet[key]["val"]}") 
+   
+             setup()  
+             break
            
           else :
 
@@ -142,7 +146,12 @@ def options():
                
           elif  any(char.lower() == 'i' for char in inputVal):
                print('Info')  
-               print(optionsDataSet) 
+               print("Update witch Option ?")
+         
+               for i in range(int(len(optionsDataSet))):
+                    key = list(optionsDataSet.keys())[i]
+                    print(f"DataName {key} and DataValue {optionsDataSet[key]["val"]}") 
+ 
                
           elif  any(char.lower() == 'u' for char in inputVal):
                print('Update')  
@@ -158,7 +167,10 @@ def updaterOptions():
                
      
           print("Update witch Option ?")
-          print(optionsDataSet) 
+         
+          for i in range(int(len(optionsDataSet))):
+             key = list(optionsDataSet.keys())[i]
+             print(f"DataName {key} and DataValue {optionsDataSet[key]["val"]}") 
 
           print("Put Option Name in or e for exit") 
 
