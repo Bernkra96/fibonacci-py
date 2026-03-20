@@ -12,9 +12,9 @@ B = 1
 global runFor 
 global inputVal 
 
-#Options preset
+#Options preset # "infoShort":""
 
-optionsDataSet = {"EndTimer": { "val": True,},"TimeEndTimer":  { "val": 2} , "PrintEndResult" : { "val":  True }, "SaveEndResult" : {"val" : True}}
+optionsDataSet = {"EndTimer": { "val": True,"infoShort":" Want to Run End timer?"},"TimeEndTimer":  { "val": 2, "infoShort":"Set EndTimer Length in sek."} , "PrintEndResult" : { "val":  True ,"infoShort":"Print Result in Console" }, "SaveEndResult" : {"val" : True, "infoShort":"Save Result as in Text File "}}
           
 #Limit for int to string conversion
 
@@ -51,7 +51,7 @@ def setup():
          
           for i in range(int(len(optionsDataSet))):
              key = list(optionsDataSet.keys())[i]
-             print(f"DataName {key} and DataValue {optionsDataSet[key]["val"]}") 
+             print(f"DataName {key} │  DataValue {optionsDataSet[key]["val"]} │  Info: {optionsDataSet[key]["infoShort"]}")  
    
              setup()  
              break
@@ -150,8 +150,7 @@ def options():
          
                for i in range(int(len(optionsDataSet))):
                     key = list(optionsDataSet.keys())[i]
-                    print(f"DataName {key} and DataValue {optionsDataSet[key]["val"]}") 
- 
+                    print(f"DataName {key} │  DataValue {optionsDataSet[key]["val"]} │  Info: {optionsDataSet[key]["infoShort"]}") 
                
           elif  any(char.lower() == 'u' for char in inputVal):
                print('Update')  
@@ -170,7 +169,7 @@ def updaterOptions():
          
           for i in range(int(len(optionsDataSet))):
              key = list(optionsDataSet.keys())[i]
-             print(f"DataName {key} and DataValue {optionsDataSet[key]["val"]}") 
+             print(f"DataName {key} │  DataValue {optionsDataSet[key]["val"]} │  Info: {optionsDataSet[key]["infoShort"]}") 
 
           print("Put Option Name in or e for exit") 
 
@@ -199,7 +198,7 @@ def updateSetting(name , keyData ):
                
                case bool():
                     print("Is a Bool Stetting")
-                    print(f'Name of Setting {key} and is, {name[key]["val"]}')
+                    print(f'Name of Setting {key} and is, {name[key]["val"]}  | Info {name[key]["infoShort"]} ')
                     
                     forBoolInput = input("Type true or false.: ")
                     if forBoolInput == 'true':
