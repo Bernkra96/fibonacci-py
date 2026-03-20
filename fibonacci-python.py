@@ -12,7 +12,7 @@ B = 1
 global runFor 
 global inputVal 
 
-#Options preset # "infoShort":""
+# Options preset #  "":{"val": "" ,"infoShort":""}
 
 optionsDataSet = {"EndTimer": { "val": True,"infoShort":" Want to Run End timer?"},"TimeEndTimer":  { "val": 2, "infoShort":"Set EndTimer Length in sek."} , "PrintEndResult" : { "val":  True ,"infoShort":"Print Result in Console" }, "SaveEndResult" : {"val" : True, "infoShort":"Save Result as in Text File "}}
           
