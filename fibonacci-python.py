@@ -42,33 +42,12 @@ def optionsLoader():
  with open("options.json", "r") as  optionsDataSetFile:    
      optionsDataSet = json.load(optionsDataSetFile)
      
+def optionsSaver(data):
 
-
-
+ global optionsDataSet 
+ with open("options.json", "w") as  optionsDataSetFile:
+      json.dump(data,optionsDataSetFile)
      
-        
-
-     
-     
-
-  
-
-         
-
- 
-   
-
-
-     
-     
-
-#  if next(iter(optionsDataSet)) == next(iter(optionsDataSetFile)):
-#       optionsDataSetFile.write(optionsDataSetFile)
-#       print ("Save File has data ", optionsDataSetFile)
-      
-
-
-
 
 
 
@@ -258,14 +237,14 @@ def updateSetting(name , keyData ):
                     forBoolInput = input("Type true or false.: ")
                     if forBoolInput == 'true':
                       optionsDataSet[key]["val"] = True
-                      print(f"Set to { optionsDataSet[key]}")
-                      
+                      print(f"Set to { optionsDataSet[key]["val"]}")
+                      optionsSaver(optionsDataSet)
                       break
                     
                     elif forBoolInput == 'false':
                          optionsDataSet[key]["val"] = False
                          print(f"Set to { optionsDataSet[key]["val"]}")
- 
+                         optionsSaver(optionsDataSet)
                          break
               
                     else: 
@@ -280,13 +259,15 @@ def updateSetting(name , keyData ):
                     if any(char.isdigit() for char in forIntInput) is True:
                            optionsDataSet[key]["val"] = int(forIntInput)
                            print(f"Set to { optionsDataSet[key]["val"]}")
+                           optionsSaver(optionsDataSet)
                            break
                     else: 
                          print("No Valet input") 
                          
                case _:
                     print("Error No Valid Format ")
-
+     
+   
      options()        
  
 
@@ -294,6 +275,7 @@ optionsLoader()
 setup()
 calc()    
 printResult()
+optionsSaver(optionsDataSet)
 #EndTimer
 if optionsDataSet["EndTimer"]["val"] == True :
      time.sleep(optionsDataSet["TimeEndTimer"]["val"])
