@@ -16,14 +16,14 @@ A = 0
 B = 1
 global runFor 
 global inputVal 
-global optionsDataSet 
+
 # Options preset #  "":{"val": "" ,"infoShort":""}
 
 optionsDataPreset = {"EndTimer": { "val": True,"infoShort":" Want to Run End timer?"},"TimeEndTimer":  { "val": 2, "infoShort":"Set EndTimer Length in sek."} , "PrintEndResult" : { "val":  True ,"infoShort":"Print Result in Console" }, "SaveEndResult" : {"val" : True, "infoShort":"Save Result as in Text File "}}
 
 
 
-optionsDataSet = optionsDataPreset
+
 #Limit for int to string conversion
 
 limString = 0 #set limit for int to string conversion // 0 for unlimited
@@ -31,20 +31,25 @@ sys.set_int_max_str_digits(limString)
 
 
 def optionsLoader():
- 
-     with open("options.json", "a+") as  optionsDataSetFile:
+ global optionsDataSet 
+ with open("options.json", "a") as  optionsDataSetFile:
 
 
      
-      if os.path.getsize('options.json') == 0:
-           print("options Empty")  
-           json.dump(optionsDataPreset,optionsDataSetFile)
+  if os.path.getsize('options.json') == 0:
+     print("options Empty")  
+     json.dump(optionsDataPreset,optionsDataSetFile)
+ with open("options.json", "r") as  optionsDataSetFile:    
+     optionsDataSet = json.load(optionsDataSetFile)
+     
+
+
+
+     
         
-           optionsDataSet = json.load(optionsDataSetFile)
+
      
-      elif os.path.getsize('options.json') == 0:
-          
-          optionsDataSet = json.load(optionsDataSetFile)
+     
 
   
 
@@ -290,5 +295,5 @@ setup()
 calc()    
 printResult()
 #EndTimer
-if optionsDataSet["EndTimer"] == True :
-     time.sleep(optionsDataSet["TimeEndTimer"])
+if optionsDataSet["EndTimer"]["val"] == True :
+     time.sleep(optionsDataSet["TimeEndTimer"]["val"])
