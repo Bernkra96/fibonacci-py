@@ -14,12 +14,26 @@ global inputVal
 
 # Options preset #  "":{"val": "" ,"infoShort":""}
 
-optionsDataSet = {"EndTimer": { "val": True,"infoShort":" Want to Run End timer?"},"TimeEndTimer":  { "val": 2, "infoShort":"Set EndTimer Length in sek."} , "PrintEndResult" : { "val":  True ,"infoShort":"Print Result in Console" }, "SaveEndResult" : {"val" : True, "infoShort":"Save Result as in Text File "}}
-          
+optionsDataPreset = {"EndTimer": { "val": True,"infoShort":" Want to Run End timer?"},"TimeEndTimer":  { "val": 2, "infoShort":"Set EndTimer Length in sek."} , "PrintEndResult" : { "val":  True ,"infoShort":"Print Result in Console" }, "SaveEndResult" : {"val" : True, "infoShort":"Save Result as in Text File "}}
+
+
+
+global optionsDataSet
+optionsDataSet = optionsDataPreset
 #Limit for int to string conversion
 
 limString = 0 #set limit for int to string conversion // 0 for unlimited
 sys.set_int_max_str_digits(limString) 
+
+def optionsLoader():
+    open()
+
+
+
+
+
+
+
 def setup():
      global runFor 
      global inputVal 
@@ -49,12 +63,12 @@ def setup():
            
             print("Update witch Option ?")
          
-          for i in range(int(len(optionsDataSet))):
-             key = list(optionsDataSet.keys())[i]
-             print(f"DataName {key} │  DataValue {optionsDataSet[key]["val"]} │  Info: {optionsDataSet[key]["infoShort"]}")  
+            for i in range(int(len(optionsDataSet))):
+                     key = list(optionsDataSet.keys())[i]
+                     print(f"DataName {key} │  DataValue {optionsDataSet[key]["val"]} │  Info: {optionsDataSet[key]["infoShort"]}")  
    
-             setup()  
-             break
+            setup() 
+            break 
            
           else :
 
