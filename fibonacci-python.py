@@ -1,8 +1,13 @@
 """Fibonacci sequence"""
 
 
+import json
+
+import os
 import sys
 import time
+
+
 
 
 # Start Val A B s
@@ -11,22 +16,51 @@ A = 0
 B = 1
 global runFor 
 global inputVal 
-
+global optionsDataSet 
 # Options preset #  "":{"val": "" ,"infoShort":""}
 
 optionsDataPreset = {"EndTimer": { "val": True,"infoShort":" Want to Run End timer?"},"TimeEndTimer":  { "val": 2, "infoShort":"Set EndTimer Length in sek."} , "PrintEndResult" : { "val":  True ,"infoShort":"Print Result in Console" }, "SaveEndResult" : {"val" : True, "infoShort":"Save Result as in Text File "}}
 
 
 
-global optionsDataSet
 optionsDataSet = optionsDataPreset
 #Limit for int to string conversion
 
 limString = 0 #set limit for int to string conversion // 0 for unlimited
 sys.set_int_max_str_digits(limString) 
 
+
 def optionsLoader():
-    open()
+ 
+     with open("options.json", "a+") as  optionsDataSetFile:
+
+
+     
+      if os.path.getsize('options.json') == 0:
+           print("options Empty")  
+           json.dump(optionsDataPreset,optionsDataSetFile)
+        
+           optionsDataSet = json.load(optionsDataSetFile)
+     
+      elif os.path.getsize('options.json') == 0:
+          
+          optionsDataSet = json.load(optionsDataSetFile)
+
+  
+
+         
+
+ 
+   
+
+
+     
+     
+
+#  if next(iter(optionsDataSet)) == next(iter(optionsDataSetFile)):
+#       optionsDataSetFile.write(optionsDataSetFile)
+#       print ("Save File has data ", optionsDataSetFile)
+      
 
 
 
@@ -35,6 +69,8 @@ def optionsLoader():
 
 
 def setup():
+  
+
      global runFor 
      global inputVal 
      print('─────────────────────────────────────────────────────────'),
@@ -248,7 +284,8 @@ def updateSetting(name , keyData ):
 
      options()        
  
-     
+
+optionsLoader()  
 setup()
 calc()    
 printResult()
