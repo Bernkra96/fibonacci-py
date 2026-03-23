@@ -2,7 +2,6 @@
 
 
 import json
-
 import os
 import sys
 import time
@@ -14,8 +13,9 @@ import time
 
 A = 0
 B = 1
-global runFor 
-global inputVal 
+
+global runFor
+global inputVal
 
 # Options preset #  "":{"val": "" ,"infoShort":""}
 
@@ -27,25 +27,25 @@ optionsDataPreset = {"EndTimer": { "val": True,"infoShort":" Want to Run End tim
 #Limit for int to string conversion
 
 limString = 0 #set limit for int to string conversion // 0 for unlimited
-sys.set_int_max_str_digits(limString) 
+sys.set_int_max_str_digits(limString)
 
 
 def optionsLoader():
- global optionsDataSet 
+ global optionsDataSet
  with open("options.json", "a") as  optionsDataSetFile:
 
 
      
   if os.path.getsize('options.json') == 0:
-     print("options Empty")  
+     print("options Empty")
      json.dump(optionsDataPreset,optionsDataSetFile)
- with open("options.json", "r") as  optionsDataSetFile:    
+ with open("options.json", "r") as optionsDataSetFile:   
      optionsDataSet = json.load(optionsDataSetFile)
      
 def optionsSaver(data):
 
- global optionsDataSet 
- with open("options.json", "w") as  optionsDataSetFile:
+ global optionsDataSet
+ with open("options.json", "w") as optionsDataSetFile:
       json.dump(data,optionsDataSetFile)
      
 
@@ -55,19 +55,19 @@ def optionsSaver(data):
 def setup():
   
 
-     global runFor 
-     global inputVal 
+     global runFor
+     global inputVal
      print('─────────────────────────────────────────────────────────'),
      print('Hallo Welcome.')
      print('To this Fibonacci Runner / Benchmark.')
      print('Set Number off runs.')
-     print("o for options, s for set up ") 
+     print("o for options, s for set up , q quit ")
 
      while True:
           inputVal = input("Number or text(Listed Only).: ")
      
     
-          if   any(char.isdigit() for char in inputVal) is True:
+          if any(char.isdigit() for char in inputVal) is True:
            print("Is Valid InT.") 
            inputVal = int(inputVal)
            
@@ -89,6 +89,11 @@ def setup():
    
             setup() 
             break 
+          
+          elif  any(char.lower() == 'q' for char in inputVal):
+               print('Quit') 
+               sys.exit()
+               break
            
           else :
 
@@ -189,7 +194,8 @@ def options():
           elif  any(char.lower() == 'u' for char in inputVal):
                print('Update')  
                updaterOptions() 
-               break    
+               break 
+           
           else :
 
              print("Is not Valid ")     
@@ -203,9 +209,9 @@ def updaterOptions():
          
           for i in range(int(len(optionsDataSet))):
              key = list(optionsDataSet.keys())[i]
-             print(f"DataName {key} │  DataValue {optionsDataSet[key]["val"]} │  Info: {optionsDataSet[key]["infoShort"]}") 
+             print(f"DataName {key} │  DataValue {optionsDataSet[key]["val"]} │  Info: {optionsDataSet[key]["infoShort"]}")
 
-          print("Put Option Name in or e for exit") 
+          print("Put Option Name in or e for exit")
 
           selectOptionsUserInput = input("Text(Option Name).: ")
 
@@ -221,7 +227,7 @@ def updaterOptions():
           
 
         
-def updateSetting(name , keyData ):    
+def updateSetting(name , keyData ):
      
      key = keyData
      
