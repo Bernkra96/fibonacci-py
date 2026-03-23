@@ -31,22 +31,20 @@ sys.set_int_max_str_digits(limString)
 
 
 def optionsLoader():
- global optionsDataSet
- with open("options.json", "a") as  optionsDataSetFile:
+     global optionsDataSet
 
-
-     
-  if os.path.getsize('options.json') == 0:
-     print("options Empty")
-     json.dump(optionsDataPreset,optionsDataSetFile)
- with open("options.json", "r") as optionsDataSetFile:   
-     optionsDataSet = json.load(optionsDataSetFile)
+     with open("options.json", "a") as  optionsDataSetFile:
+          if os.path.getsize('options.json') == 0:
+               print("options Empty")
+               json.dump(optionsDataPreset,optionsDataSetFile)
+    
+     with open("options.json", "r") as optionsDataSetFile:   
+          optionsDataSet = json.load(optionsDataSetFile)
      
 def optionsSaver(data):
-
- global optionsDataSet
- with open("options.json", "w") as optionsDataSetFile:
-      json.dump(data,optionsDataSetFile)
+     global optionsDataSet
+     with open("options.json", "w") as optionsDataSetFile:
+          json.dump(data,optionsDataSetFile)
      
 
 
@@ -67,25 +65,25 @@ def setup():
           inputVal = input("Number or text(Listed Only).: ")
      
     
-          if any(char.isdigit() for char in inputVal) is True:
-           print("Is Valid InT.") 
-           inputVal = int(inputVal)
+          if any(char.isdigit() for char in inputVal):
+               print("Is Valid InT.") 
+               inputVal = int(inputVal)
            
-           runFor = inputVal
-           print(f'Runs Fibonacci.Set for {runFor} times.')
-           break
+               runFor = inputVal
+               print(f'Runs Fibonacci.Set for {runFor} times.')
+               break
            
           elif any(char.lower() == 'o' for char in inputVal):
 
-                options()    
-                break 
+               options()    
+               break 
           elif any(char.lower() == 's' for char in inputVal):
            
             print("Update witch Option ?")
          
             for i in range(int(len(optionsDataSet))):
-                     key = list(optionsDataSet.keys())[i]
-                     print(f"DataName {key} │  DataValue {optionsDataSet[key]["val"]} │  Info: {optionsDataSet[key]["infoShort"]}")  
+               key = list(optionsDataSet.keys())[i]
+               print(f"DataName {key} │  DataValue {optionsDataSet[key]["val"]} │  Info: {optionsDataSet[key]["infoShort"]}")  
    
             setup() 
             break 
@@ -125,7 +123,7 @@ def calc():
 
 def printResult(): 
      
-     if 'i' in globals() and optionsDataSet["PrintEndResult"]["val"] == True or 'i' in locals() and optionsDataSet["PrintEndResult"]["val"] == True:
+     if 'i' in globals() and optionsDataSet["PrintEndResult"]["val"] or 'i' in locals() and optionsDataSet["PrintEndResult"]["val"]:
         
 
           print(f'┌─────────────────────────────────────────────────────────'),
@@ -140,7 +138,7 @@ def printResult():
           
           print(f'Error No Run. "Run for N" to wars Set to 0.') 
    
-     if 'i' in globals() and optionsDataSet["SaveEndResult"]["val"] == True or 'i' in locals() and optionsDataSet["SaveEndResult"]["val"] == True:
+     if 'i' in globals() and optionsDataSet["SaveEndResult"]["val"] or 'i' in locals() and optionsDataSet["SaveEndResult"]["val"]:
          
           resultFile = open("result.txt", "w",encoding='utf-8')
          
@@ -208,8 +206,8 @@ def updaterOptions():
           print("Update witch Option ?")
          
           for i in range(int(len(optionsDataSet))):
-             key = list(optionsDataSet.keys())[i]
-             print(f"DataName {key} │  DataValue {optionsDataSet[key]["val"]} │  Info: {optionsDataSet[key]["infoShort"]}")
+               key = list(optionsDataSet.keys())[i]
+               print(f"DataName {key} │  DataValue {optionsDataSet[key]["val"]} │  Info: {optionsDataSet[key]["infoShort"]}")
 
           print("Put Option Name in or e for exit")
 
@@ -242,10 +240,10 @@ def updateSetting(name , keyData ):
                     
                     forBoolInput = input("Type true or false.: ")
                     if forBoolInput == 'true':
-                      optionsDataSet[key]["val"] = True
-                      print(f"Set to { optionsDataSet[key]["val"]}")
-                      optionsSaver(optionsDataSet)
-                      break
+                         optionsDataSet[key]["val"] = True
+                         print(f"Set to { optionsDataSet[key]["val"]}")
+                         optionsSaver(optionsDataSet)
+                         break
                     
                     elif forBoolInput == 'false':
                          optionsDataSet[key]["val"] = False
@@ -262,11 +260,11 @@ def updateSetting(name , keyData ):
                     print(f'Name of Setting {key} and is, {name[key]["val"]}')
                     forIntInput = input("Type Number.: ")
                     
-                    if any(char.isdigit() for char in forIntInput) is True:
-                           optionsDataSet[key]["val"] = int(forIntInput)
-                           print(f"Set to { optionsDataSet[key]["val"]}")
-                           optionsSaver(optionsDataSet)
-                           break
+                    if any(char.isdigit() for char in forIntInput):
+                         optionsDataSet[key]["val"] = int(forIntInput)
+                         print(f"Set to { optionsDataSet[key]["val"]}")
+                         optionsSaver(optionsDataSet)
+                         break
                     else: 
                          print("No Valet input") 
                          
@@ -283,5 +281,5 @@ calc()
 printResult()
 optionsSaver(optionsDataSet)
 #EndTimer
-if optionsDataSet["EndTimer"]["val"] == True :
+if optionsDataSet["EndTimer"]["val"]:
      time.sleep(optionsDataSet["TimeEndTimer"]["val"])
