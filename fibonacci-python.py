@@ -6,9 +6,6 @@ import os
 import sys
 import time
 
-
-
-
 # Start Val A B s
 
 A = 0
@@ -20,9 +17,6 @@ global inputVal
 # Options preset #  "":{"val": "" ,"infoShort":""}
 
 optionsDataPreset = {"EndTimer": { "val": True,"infoShort":" Want to Run End timer?"},"TimeEndTimer":  { "val": 2, "infoShort":"Set EndTimer Length in sek."} , "PrintEndResult" : { "val":  True ,"infoShort":"Print Result in Console" }, "SaveEndResult" : {"val" : True, "infoShort":"Save Result as in Text File "}}
-
-
-
 
 #Limit for int to string conversion
 
@@ -46,9 +40,6 @@ def optionsSaver(data):
      with open("options.json", "w") as optionsDataSetFile:
           json.dump(data,optionsDataSetFile)
      
-
-
-
 
 def setup():
   
