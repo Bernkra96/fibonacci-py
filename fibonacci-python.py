@@ -132,8 +132,7 @@ def printResult():
           print(f'Error No Run. "Run for N" to wars Set to 0.') 
    
      if 'i' in globals() and optionsDataSet["SaveEndResult"]["val"] or 'i' in locals() and optionsDataSet["SaveEndResult"]["val"]:
-         
-          resultFile = open("result.txt", "w",encoding='utf-8')
+         with  open("result.txt", "w",encoding='utf-8') as resultFile :
          
           print(f'┌──────────────────────────────────────────────────────────────────────────', file=resultFile ),
           print(f'│ Fibonacci Runner / Benchmark Result',file=resultFile )
