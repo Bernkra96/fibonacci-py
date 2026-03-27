@@ -34,12 +34,15 @@ def optionsLoader():
     
      with open("options.json", "r") as optionsDataSetFile:   
           optionsDataSet = json.load(optionsDataSetFile)
+
+     close("options.json")
+     
      
 def optionsSaver(data):
      global optionsDataSet
      with open("options.json", "w") as optionsDataSetFile:
           json.dump(data,optionsDataSetFile)
-     
+     close("options.json")
 
 def setup():
   
