@@ -6,9 +6,6 @@ import os
 import sys
 import time
 
-
-
-
 # Start Val A B s
 
 A = 0
@@ -20,9 +17,6 @@ global inputVal
 # Options preset #  "":{"val": "" ,"infoShort":""}
 
 optionsDataPreset = {"EndTimer": { "val": True,"infoShort":" Want to Run End timer?"},"TimeEndTimer":  { "val": 2, "infoShort":"Set EndTimer Length in sek."} , "PrintEndResult" : { "val":  True ,"infoShort":"Print Result in Console" }, "SaveEndResult" : {"val" : True, "infoShort":"Save Result as in Text File "}}
-
-
-
 
 #Limit for int to string conversion
 
@@ -40,16 +34,15 @@ def optionsLoader():
     
      with open("options.json", "r") as optionsDataSetFile:   
           optionsDataSet = json.load(optionsDataSetFile)
+
+     optionsDataSetFile.close
+     
      
 def optionsSaver(data):
      global optionsDataSet
      with open("options.json", "w") as optionsDataSetFile:
           json.dump(data,optionsDataSetFile)
-     
-
-
-
-
+     optionsDataSetFile.close
 def setup():
   
 
@@ -139,8 +132,7 @@ def printResult():
           print(f'Error No Run. "Run for N" to wars Set to 0.') 
    
      if 'i' in globals() and optionsDataSet["SaveEndResult"]["val"] or 'i' in locals() and optionsDataSet["SaveEndResult"]["val"]:
-         
-          resultFile = open("result.txt", "w",encoding='utf-8')
+         with  open("result.txt", "w",encoding='utf-8') as resultFile :
          
           print(f'┌──────────────────────────────────────────────────────────────────────────', file=resultFile ),
           print(f'│ Fibonacci Runner / Benchmark Result',file=resultFile )
