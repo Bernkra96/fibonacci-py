@@ -55,7 +55,7 @@ def setup():
      print("o for options, s for set up , q quit ")
 
      while True:
-          inputVal = input("Number or text(Listed Only).: ")
+          inputVal = input("Number or Text (Listed Only).: ")
      
     
           if any(char.isdigit() for char in inputVal):
@@ -159,7 +159,7 @@ def options():
      print("e for exit,h for help,i for info,u for update") 
     
      while True:
-          inputVal = input("Text(Listed Only).: ")
+          inputVal = input("Text (Listed Only).: ")
           
           if any(char.lower() == 'e' for char in inputVal):
                setup()
@@ -203,7 +203,7 @@ def updaterOptions():
 
           print("Put Option Name in or e for exit")
 
-          selectOptionsUserInput = input("Text(Option Name).: ")
+          selectOptionsUserInput = input("Text (Option Name).: ")
 
          
           if selectOptionsUserInput in optionsDataSet:
