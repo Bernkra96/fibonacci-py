@@ -6,17 +6,15 @@ import os
 import sys
 import time
 
-# Start Val A B s
 
-A = 0
-B = 1
 
-global runFor
-global inputVal
 
-# Options preset #  "":{"val": "" ,"infoShort":""}
 
-optionsDataPreset = {"EndTimer": { "val": True,"infoShort":" Want to Run End timer?"},"TimeEndTimer":  { "val": 2, "infoShort":"Set EndTimer Length in sek."} , "PrintEndResult" : { "val":  True ,"infoShort":"Print Result in Console" }, "SaveEndResult" : {"val" : True, "infoShort":"Save Result as in Text File "}}
+
+
+# Options preset #"":{"val": "" ,"infoShort":""}
+
+optionsDataPreset = {"EndTimer": { "val": True,"infoShort":" Want to Run End timer?"},"TimeEndTimer":  { "val": 2, "infoShort":"Set EndTimer Length in sek."} , "PrintEndResult" : { "val":  True ,"infoShort":"Print Result in Console" }, "SaveEndResult" : {"val" : True, "infoShort":"Save Result as in Text File "} , "startValA":{"val": 0 ,"infoShort":"Start Val A"},"startValB":{"val": 1 ,"infoShort":"Start Val B"} }
 
 #Limit for int to string conversion
 
@@ -91,13 +89,17 @@ def setup():
            print("Is not Valid InT.")     
            
           
-def calc():  
-     global A
+def calc(a ,b):  
+     global A 
      global B
      global i
      global startTime
      global endTime
-    
+           
+     A = a
+     B = b
+
+
      startTime = time.time() #Start Time 
     
      for  i in range(runFor):
@@ -269,7 +271,7 @@ def updateSetting(name , keyData ):
 
 optionsLoader()  
 setup()
-calc()    
+calc(optionsDataSet["startValA"]["val"],optionsDataSet["startValB"]["val"])    
 printResult()
 optionsSaver(optionsDataSet)
 #EndTimer
