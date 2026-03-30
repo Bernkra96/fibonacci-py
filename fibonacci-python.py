@@ -6,12 +6,6 @@ import os
 import sys
 import time
 
-
-
-
-
-
-
 # Options preset #"":{"val": "" ,"infoShort":""}
 
 optionsDataPreset = {"EndTimer": { "val": True,"infoShort":" Want to Run End timer?"},"TimeEndTimer":  { "val": 2, "infoShort":"Set EndTimer Length in sek."} , "PrintEndResult" : { "val":  True ,"infoShort":"Print Result in Console" }, "SaveEndResult" : {"val" : True, "infoShort":"Save Result as in Text File "} , "startValA":{"val": 0 ,"infoShort":"Start Val A"},"startValB":{"val": 1 ,"infoShort":"Start Val B"} }
@@ -25,7 +19,7 @@ sys.set_int_max_str_digits(limString)
 def optionsLoader():
      global optionsDataSet
 
-     with open("options.json", "a") as  optionsDataSetFile:
+     with open("options.json", "a") as  optionsDataSetFile: # Check if file has data if not Load preset 
           if os.path.getsize('options.json') == 0:
                print("options Empty")
                json.dump(optionsDataPreset,optionsDataSetFile)
@@ -33,23 +27,24 @@ def optionsLoader():
     
      with open("options.json", "r+") as optionsDataSetFile:   
          
-          optionsDataSet = json.load(optionsDataSetFile)
-          if len(optionsDataSet.keys()) != len(optionsDataPreset.keys()):
+          optionsDataSet = json.load(optionsDataSetFile) # Load options 
+          if len(optionsDataSet.keys()) != len(optionsDataPreset.keys()): #Fix options if missing keys and Load preset
                optionsDataSetFile.seek(0)
                json.dump(optionsDataPreset,optionsDataSetFile)
                optionsDataSetFile.truncate() 
-               optionsDataSet = json.load(optionsDataSetFile)
+               optionsDataSet = json.load(optionsDataSetFile)  # Load options 
           
           optionsDataSetFile.close
      
      
-def optionsSaver(data):
+def optionsSaver(data): # Save Data to File
+
      global optionsDataSet
      with open("options.json", "w") as optionsDataSetFile:
           json.dump(data,optionsDataSetFile)
      optionsDataSetFile.close
-def setup():
-  
+def setup(): # Setup for run. Arks for N Target and opens Options 
+   
 
      global runFor
      global inputVal
@@ -96,7 +91,9 @@ def setup():
            print("Is not Valid InT.")     
            
           
-def calc(a ,b):  
+def calc(a ,b):  #Runs  Fibonacci calc
+
+
      global A 
      global B
      global i
@@ -118,9 +115,9 @@ def calc(a ,b):
           A = C
 
 
-     endTime = time.time() 
+     endTime = time.time()  #END Time 
  
- #END Time 
+ 
 
 
 def printResult(): 
