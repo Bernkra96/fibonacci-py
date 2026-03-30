@@ -120,7 +120,7 @@ def calc(a ,b):  #Runs  Fibonacci calc
  
 
 
-def printResult(): 
+def printResult(): # Result Printer in Terminal ans result File 
      
      if 'i' in globals() and optionsDataSet["PrintEndResult"]["val"] or 'i' in locals() and optionsDataSet["PrintEndResult"]["val"]:
         
@@ -160,7 +160,7 @@ def printResult():
           print(f'Error No Run. "Run for N" to wars Set to 0.')
 
 
-def options():
+def options(): # options View 
      print("Options") 
      print("e for exit,h for help,i for info,u for update") 
     
@@ -197,7 +197,7 @@ def options():
              print("Is not Valid ")     
           
           
-def updaterOptions():
+def updaterOptions(): # options Update Selector 
      while True:
                
      
@@ -223,7 +223,7 @@ def updaterOptions():
           
 
         
-def updateSetting(name , keyData ):
+def updateSetting(name , keyData ): # Option Update function 
      
      key = keyData
      
