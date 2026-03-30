@@ -29,11 +29,18 @@ def optionsLoader():
           if os.path.getsize('options.json') == 0:
                print("options Empty")
                json.dump(optionsDataPreset,optionsDataSetFile)
+          
     
-     with open("options.json", "r") as optionsDataSetFile:   
+     with open("options.json", "r+") as optionsDataSetFile:   
+         
           optionsDataSet = json.load(optionsDataSetFile)
-
-     optionsDataSetFile.close
+          if len(optionsDataSet.keys()) != len(optionsDataPreset.keys()):
+               optionsDataSetFile.seek(0)
+               json.dump(optionsDataPreset,optionsDataSetFile)
+               optionsDataSetFile.truncate() 
+               optionsDataSet = json.load(optionsDataSetFile)
+          
+          optionsDataSetFile.close
      
      
 def optionsSaver(data):
