@@ -6,17 +6,9 @@ import os
 import sys
 import time
 
-# Start Val A B s
+# Options preset #"":{"val": "" ,"infoShort":""}
 
-A = 0
-B = 1
-
-global runFor
-global inputVal
-
-# Options preset #  "":{"val": "" ,"infoShort":""}
-
-optionsDataPreset = {"EndTimer": { "val": True,"infoShort":" Want to Run End timer?"},"TimeEndTimer":  { "val": 2, "infoShort":"Set EndTimer Length in sek."} , "PrintEndResult" : { "val":  True ,"infoShort":"Print Result in Console" }, "SaveEndResult" : {"val" : True, "infoShort":"Save Result as in Text File "}}
+optionsDataPreset = {"EndTimer": { "val": True,"infoShort":" Want to Run End timer?"},"TimeEndTimer":  { "val": 2, "infoShort":"Set EndTimer Length in sek."} , "PrintEndResult" : { "val":  True ,"infoShort":"Print Result in Console" }, "SaveEndResult" : {"val" : True, "infoShort":"Save Result as in Text File "} , "startValA":{"val": 0 ,"infoShort":"Start Val A"},"startValB":{"val": 1 ,"infoShort":"Start Val B"} }
 
 #Limit for int to string conversion
 
@@ -27,24 +19,32 @@ sys.set_int_max_str_digits(limString)
 def optionsLoader():
      global optionsDataSet
 
-     with open("options.json", "a") as  optionsDataSetFile:
+     with open("options.json", "a") as  optionsDataSetFile: # Check if file has data if not Load preset 
           if os.path.getsize('options.json') == 0:
                print("options Empty")
                json.dump(optionsDataPreset,optionsDataSetFile)
+          
     
-     with open("options.json", "r") as optionsDataSetFile:   
-          optionsDataSet = json.load(optionsDataSetFile)
+     with open("options.json", "r+") as optionsDataSetFile:   
+         
+          optionsDataSet = json.load(optionsDataSetFile) # Load options 
+          if len(optionsDataSet.keys()) != len(optionsDataPreset.keys()): #Fix options if missing keys and Load preset
+               optionsDataSetFile.seek(0)
+               json.dump(optionsDataPreset,optionsDataSetFile)
+               optionsDataSetFile.truncate() 
+               optionsDataSet = json.load(optionsDataSetFile)  # Load options 
+          
+          optionsDataSetFile.close
+     
+     
+def optionsSaver(data): # Save Data to File
 
-     optionsDataSetFile.close
-     
-     
-def optionsSaver(data):
      global optionsDataSet
      with open("options.json", "w") as optionsDataSetFile:
           json.dump(data,optionsDataSetFile)
      optionsDataSetFile.close
-def setup():
-  
+def setup(): # Setup for run. Arks for N Target and opens Options 
+   
 
      global runFor
      global inputVal
@@ -55,7 +55,7 @@ def setup():
      print("o for options, s for set up , q quit ")
 
      while True:
-          inputVal = input("Number or text(Listed Only).: ")
+          inputVal = input("Number or Text (Listed Only).: ")
      
     
           if any(char.isdigit() for char in inputVal):
@@ -91,13 +91,19 @@ def setup():
            print("Is not Valid InT.")     
            
           
-def calc():  
-     global A
+def calc(a ,b):  #Runs  Fibonacci calc
+
+
+     global A 
      global B
      global i
      global startTime
      global endTime
-    
+           
+     A = a
+     B = b
+
+
      startTime = time.time() #Start Time 
     
      for  i in range(runFor):
@@ -109,12 +115,12 @@ def calc():
           A = C
 
 
-     endTime = time.time() 
+     endTime = time.time()  #END Time 
  
- #END Time 
+ 
 
 
-def printResult(): 
+def printResult(): # Result Printer in Terminal ans result File 
      
      if 'i' in globals() and optionsDataSet["PrintEndResult"]["val"] or 'i' in locals() and optionsDataSet["PrintEndResult"]["val"]:
         
@@ -154,12 +160,12 @@ def printResult():
           print(f'Error No Run. "Run for N" to wars Set to 0.')
 
 
-def options():
+def options(): # options View 
      print("Options") 
      print("e for exit,h for help,i for info,u for update") 
     
      while True:
-          inputVal = input("Text(Listed Only).: ")
+          inputVal = input("Text (Listed Only).: ")
           
           if any(char.lower() == 'e' for char in inputVal):
                setup()
@@ -191,7 +197,7 @@ def options():
              print("Is not Valid ")     
           
           
-def updaterOptions():
+def updaterOptions(): # options Update Selector 
      while True:
                
      
@@ -203,7 +209,7 @@ def updaterOptions():
 
           print("Put Option Name in or e for exit")
 
-          selectOptionsUserInput = input("Text(Option Name).: ")
+          selectOptionsUserInput = input("Text (Option Name).: ")
 
          
           if selectOptionsUserInput in optionsDataSet:
@@ -217,7 +223,7 @@ def updaterOptions():
           
 
         
-def updateSetting(name , keyData ):
+def updateSetting(name , keyData ): # Option Update function 
      
      key = keyData
      
@@ -269,7 +275,7 @@ def updateSetting(name , keyData ):
 
 optionsLoader()  
 setup()
-calc()    
+calc(optionsDataSet["startValA"]["val"],optionsDataSet["startValB"]["val"])    
 printResult()
 optionsSaver(optionsDataSet)
 #EndTimer
