@@ -8,7 +8,7 @@ import time
 
 # Options preset #"":{"val": "" ,"infoShort":""}
 
-optionsDataPreset = {"EndTimer": { "val": True,"infoShort":" Want to Run End timer?"},"TimeEndTimer":  { "val": 2, "infoShort":"Set EndTimer Length in sek."} , "PrintEndResult" : { "val":  True ,"infoShort":"Print Result in Console" }, "SaveEndResult" : {"val" : True, "infoShort":"Save Result as in Text File "} , "startValA":{"val": 0 ,"infoShort":"Start Val A"},"startValB":{"val": 1 ,"infoShort":"Start Val B"} }
+optionsDataPreset = {"EndTimer": { "val": True,"infoShort":" Want to Run End timer?"},"TimeEndTimer":  { "val": 2, "infoShort":"Set EndTimer Length in sek."} , "PrintEndResult" : { "val":  True ,"infoShort":"Print Result in Console" }, "SaveEndResult" : {"val" : True, "infoShort":"Save Result as in Text File "} , "startValA":{"val": 0 ,"infoShort":"Start Val A"},"startValB":{"val": 1 ,"infoShort":"Start Val B"}, "PresetNumberRuns":{"val": 1000 ,"infoShort":"Number of Run if preset if no input "}  }
 
 #Limit for int to string conversion
 
@@ -52,7 +52,7 @@ def setup(): # Setup for run. Arks for N Target and opens Options
      print('Hallo Welcome.')
      print('To this Fibonacci Runner / Benchmark.')
      print('Set Number off runs.')
-     print("o for options, s for set up , q for quit ")
+     print("press ender for preset , o for options, s for set up , q for quit ")
 
      while True:
           inputVal = input("Number or Text (Listed Only).: ")
@@ -88,7 +88,13 @@ def setup(): # Setup for run. Arks for N Target and opens Options
            
           else :
 
-           print("Is not Valid InT.")     
+               print("Is not Valid InT or Text.")     
+               print("Run Prest Int.") 
+               inputVal = int(optionsDataSet["PresetNumberRuns"]["val"])
+           
+               runFor = inputVal
+               print(f'Runs Fibonacci.Set for {runFor} times.')
+               break
            
           
 def calc(a ,b):  #Runs  Fibonacci calc
