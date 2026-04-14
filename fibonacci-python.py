@@ -52,7 +52,7 @@ def setup(): # Setup for run. Arks for N Target and opens Options
      print('Hallo Welcome.')
      print('To this Fibonacci Runner / Benchmark.')
      print('Set Number off runs.')
-     print("o for options, s for set up , q quit ")
+     print("o for options, s for set up , q for quit ")
 
      while True:
           inputVal = input("Number or Text (Listed Only).: ")
