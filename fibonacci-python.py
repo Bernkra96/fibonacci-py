@@ -43,6 +43,7 @@ def optionsSaver(data): # Save Data to File
      with open("options.json", "w") as optionsDataSetFile:
           json.dump(data,optionsDataSetFile)
      optionsDataSetFile.close
+
 def setup(): # Setup for run. Arks for N Target and opens Options 
    
 
@@ -58,19 +59,18 @@ def setup(): # Setup for run. Arks for N Target and opens Options
           inputVal = input("Number or Text (Listed Only).: ")
      
     
-          if any(char.isdigit() for char in inputVal):
-               print("Is Valid InT.") 
+          if any(char.isdigit() for char in inputVal):  #Run with input if Num . Break Loop to lode next calc Functions 
                inputVal = int(inputVal)
            
                runFor = inputVal
                print(f'Runs Fibonacci.Set for {runFor} times.')
                break
            
-          elif any(char.lower() == 'o' for char in inputVal):
+          elif any(char.lower() == 'o' for char in inputVal): # Lode options 
 
                options()    
                break 
-          elif any(char.lower() == 's' for char in inputVal):
+          elif any(char.lower() == 's' for char in inputVal): # Lode Setup 
            
             print("Update witch Option ?")
          
@@ -81,13 +81,13 @@ def setup(): # Setup for run. Arks for N Target and opens Options
             setup() 
             break 
           
-          elif  any(char.lower() == 'q' for char in inputVal):
+          elif  any(char.lower() == 'q' for char in inputVal):   # Close Program 
                print('Quit') 
                sys.exit()
                break
            
-          else :
-
+          else :     #Run with PreSetNum if no valid input. Break Loop to lode next calc Functions 
+               
                print("Is not Valid InT or Text.")     
                print("Run Prest Int.") 
                inputVal = int(optionsDataSet["PresetNumberRuns"]["val"])
@@ -173,10 +173,10 @@ def options(): # options View
      while True:
           inputVal = input("Text (Listed Only).: ")
           
-          if any(char.lower() == 'e' for char in inputVal):
+          if any(char.lower() == 'e' for char in inputVal): # Lode setup
                setup()
                break
-          elif  any(char.lower() == 'h' for char in inputVal):
+          elif  any(char.lower() == 'h' for char in inputVal): # Show help
                print('Help')  
                print('o = Options')  
                print('Opens Options ')
@@ -185,7 +185,7 @@ def options(): # options View
                print('u = Exit ')  
                print(f'Update Options')    
                
-          elif  any(char.lower() == 'i' for char in inputVal):
+          elif  any(char.lower() == 'i' for char in inputVal): # Show Info and options data
                print('Info')  
                print("Update witch Option ?")
          
@@ -193,7 +193,7 @@ def options(): # options View
                     key = list(optionsDataSet.keys())[i]
                     print(f"DataName {key} │  DataValue {optionsDataSet[key]["val"]} │  Info: {optionsDataSet[key]["infoShort"]}") 
                
-          elif  any(char.lower() == 'u' for char in inputVal):
+          elif  any(char.lower() == 'u' for char in inputVal): # Lode updaterForOptions
                print('Update')  
                updaterOptions() 
                break 
@@ -236,9 +236,9 @@ def updateSetting(name , keyData ): # Option Update function
      while True:
           
      
-          match name[key]["val"]:
+          match name[key]["val"]: # Mach val type 
                
-               case bool():
+               case bool(): #Update Bool
                     print("Is a Bool Stetting")
                     print(f'Name of Setting {key} and is, {name[key]["val"]}  | Info {name[key]["infoShort"]} ')
                     
@@ -259,7 +259,7 @@ def updateSetting(name , keyData ): # Option Update function
                          print("No Valet input") 
                          
            
-               case int():
+               case int():  #Update int
                     print("Is Int Setting")
                     print(f'Name of Setting {key} and is, {name[key]["val"]}')
                     forIntInput = input("Type Number.: ")
