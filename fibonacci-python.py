@@ -130,14 +130,18 @@ def printResult(): # Result Printer in Terminal ans result File
      
      if 'i' in globals() and optionsDataSet["PrintEndResult"]["val"] or 'i' in locals() and optionsDataSet["PrintEndResult"]["val"]:
         
-
-          print(f'┌─────────────────────────────────────────────────────────'),
+          print(f'┌──────────────────────────────────────────────────────────────────────────'),
+          print(f'│ Fibonacci Runner / Benchmark Result')
+          print(f'├──────────────────────────────────────────────────────────────────────────'), 
           print(f'│ Set Number of Runs: {runFor}'),
           print(f'│ Run Number of Runs: {i+1}'),
-          print(f'├─────────────────────────────────────────────────────────'),
+          print(f'├──────────────────────────────────────────────────────────────────────────'),
           print(f'│ Start Time {startTime} End Time {endTime}'),
           print(f'│ Run Time seconds {endTime - startTime}'),
-          print(f'└─────────────────────────────────────────────────────────')
+          print(f'├──────────────────────────────────────────────────────────────────────────'),
+          print(f'│ By Bernkra                Git https://github.com/Bernkra96/fibonacci-py  '),
+          print(f'└──────────────────────────────────────────────────────────────────────────')
+          
 
      elif  runFor == 0 or inputVal is None: 
           
