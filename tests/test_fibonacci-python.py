@@ -1,5 +1,6 @@
 import sys
 import importlib
+from io import StringIO
 
 ## sys.path.append('../.')
 fibonacci = importlib.import_module("fibonacci-python")
@@ -41,3 +42,14 @@ def test_calc(capsys):
     assert "15" in captured.out
     assert "23" in captured.out
     assert "38" not in captured.out
+
+
+# def test_options(monkeypatch, capsys):
+#     testInput = StringIO("Text (Listed Only).: h")
+#     monkeypatch.setattr("sys.stdin", testInput)
+#     fibonacci.setup()
+#     fibonacci.options()
+#     captured = capsys.readouterr()
+
+#     assert "Help" in captured.out
+#     assert "Help" in captured.out
