@@ -5,6 +5,7 @@ import json
 import os
 import sys
 import time
+import warnings
 
 # Options preset #"":{"val": "" ,"infoShort":""}
 
@@ -230,14 +231,17 @@ def options(): # options View
            
           else :
 
-             print("Is not Valid ")     
+              warnings.warn("No Valet input")  
           
           
 def updaterOptions(): # options Update Selector 
      """options Update Selector 
 
 
-     Select option to Update mach input st key    
+     Select option to Update mach input st key 
+
+     Raises:
+         ValueError: If None is Given 
      """
      while True:
                
@@ -260,7 +264,8 @@ def updaterOptions(): # options Update Selector
                options()
                break
           else: 
-           print("No Valet input")
+               raise ValueError("No valid input ")
+
           
 
         
@@ -296,7 +301,8 @@ def updateSetting(name :dict, keyData :str): # Option Update function
                          break
               
                     else: 
-                         print("No Valet input") 
+                         
+                         warnings.warn("No Valet input")
                          
            
                case int():  #Update int
@@ -310,10 +316,10 @@ def updateSetting(name :dict, keyData :str): # Option Update function
                          optionsSaver(optionsDataSet)
                          break
                     else: 
-                         print("No Valet input") 
+                          warnings.warn("No Valet input")
                          
                case _:
-                    print("Error No Valid Format ")
+                     raise ValueError("No valid input ")
      
    
      options()        
