@@ -123,8 +123,9 @@ def calc(a: int ,b: int , runFor: int)  -> None :  #Runs  Fibonacci calc
           C = A + B
        
           print(C)
-          B = A
-          A = C
+          A = B
+          B = C
+        
 
 
      endTime = time.time()  #END Time 
