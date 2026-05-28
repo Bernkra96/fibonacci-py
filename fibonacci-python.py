@@ -1,6 +1,6 @@
 """Fibonacci sequence"""
 
-
+import typing
 import json
 import os
 import sys
@@ -97,8 +97,14 @@ def setup(): # Setup for run. Arks for N Target and opens Options
                break
            
           
-def calc(a ,b):  #Runs  Fibonacci calc
+def calc(a: int ,b: int , runFor: int)  -> None :  #Runs  Fibonacci calc
+     """Calcs  Fibonacci for runFor Val  
 
+     Args:
+         a (int): fist int starts with 0 from startValA options
+         b (int): fist int starts with 1 from startValB options
+         runFor(int): number of runs 
+     """
 
      global A 
      global B
@@ -285,10 +291,10 @@ def updateSetting(name , keyData ): # Option Update function
 
 
 
-if __name__ == "__main__":   # Main warper 
+if __name__ == "__main__":   # Main warper git
      optionsLoader()  
      setup()
-     calc(optionsDataSet["startValA"]["val"],optionsDataSet["startValB"]["val"])    
+     calc(optionsDataSet["startValA"]["val"],optionsDataSet["startValB"]["val"],runFor )    
      printResult()
      optionsSaver(optionsDataSet)
      #EndTimer
