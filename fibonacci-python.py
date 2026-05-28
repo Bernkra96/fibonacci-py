@@ -17,6 +17,8 @@ sys.set_int_max_str_digits(limString)
 
 
 def optionsLoader():
+     """ Load Options file or make new if not three   
+     """
      global optionsDataSet
 
      with open("options.json", "a") as  optionsDataSetFile: # Check if file has data if not Load preset 
@@ -37,7 +39,12 @@ def optionsLoader():
           optionsDataSetFile.close
      
      
-def optionsSaver(data): # Save Data to File
+def optionsSaver(data: dict): # Save Data to File
+     """Save data to File 
+
+     Args:
+         data (dict): Python dictionary
+     """
 
      global optionsDataSet
      with open("options.json", "w") as optionsDataSetFile:
@@ -45,7 +52,12 @@ def optionsSaver(data): # Save Data to File
      optionsDataSetFile.close
 
 def setup(): # Setup for run. Arks for N Target and opens Options 
-   
+     """ 
+     Setup for run. Arks for N Target and opens Options 
+
+          runFor : Number of Nuns 
+          inputVal : user input Number of Runs or string for options select  
+     """
 
      global runFor
      global inputVal
@@ -133,7 +145,10 @@ def calc(a: int ,b: int , runFor: int)  -> None :  #Runs  Fibonacci calc
  
 
 
-def printResult(): # Result Printer in Terminal ans result File 
+def printResult(): # Result Printer in Terminal and result File 
+     ''' Result Printer in Terminal And Text File  or error if no run  
+     '''
+
      
      if 'i' in globals() and optionsDataSet["PrintEndResult"]["val"] or 'i' in locals() and optionsDataSet["PrintEndResult"]["val"]:
         
@@ -178,6 +193,10 @@ def printResult(): # Result Printer in Terminal ans result File
 
 
 def options(): # options View 
+     """Options  Select and Show
+
+      inputVal : user input Number of Runs or string for options select
+     """
      print("Options") 
      print("e for exit,h for help,i for info,u for update") 
     
@@ -215,6 +234,11 @@ def options(): # options View
           
           
 def updaterOptions(): # options Update Selector 
+     """options Update Selector 
+
+
+     Select option to Update mach input st key    
+     """
      while True:
                
      
@@ -240,8 +264,13 @@ def updaterOptions(): # options Update Selector
           
 
         
-def updateSetting(name , keyData ): # Option Update function 
-     
+def updateSetting(name :dict, keyData :str): # Option Update function 
+     """Update Option val with input Checking 
+
+     Args:
+         name (dict): Data sets Python dictionary
+         keyData (str): Key 
+     """
      key = keyData
      
      while True:
