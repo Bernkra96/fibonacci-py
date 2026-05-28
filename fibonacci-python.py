@@ -283,11 +283,14 @@ def updateSetting(name , keyData ): # Option Update function
      options()        
  
 
-optionsLoader()  
-setup()
-calc(optionsDataSet["startValA"]["val"],optionsDataSet["startValB"]["val"])    
-printResult()
-optionsSaver(optionsDataSet)
-#EndTimer
-if optionsDataSet["EndTimer"]["val"]:
-     time.sleep(optionsDataSet["TimeEndTimer"]["val"])
+
+
+if __name__ == "__main__":   # Main warper 
+     optionsLoader()  
+     setup()
+     calc(optionsDataSet["startValA"]["val"],optionsDataSet["startValB"]["val"])    
+     printResult()
+     optionsSaver(optionsDataSet)
+     #EndTimer
+     if optionsDataSet["EndTimer"]["val"]:
+          time.sleep(optionsDataSet["TimeEndTimer"]["val"])
