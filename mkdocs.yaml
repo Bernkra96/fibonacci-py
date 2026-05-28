@@ -1,0 +1,43 @@
+site_name: xxx
+
+repo_name: fibonacci-py
+
+repo_url: https://github.com/Bernkra96/fibonacci-py
+
+
+
+nav:
+  - Home: index.md
+  - fibonacci: fibonacci.md
+
+
+
+theme:
+  name: material
+  features:
+    - content.code.annotate  # Adds inline parameter types
+    - content.code.copy  # Allows copying method signatures
+    - search.suggest
+    - navigation.instant
+  palette:
+    scheme: slate
+    primary: indigo
+    accent: light-blue
+  
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            docstring_section_style: table
+            show_source: false
+            filters: ["!^_", "!^__"]
+            members_order: alphabetical
+            separate_signature: true
+            line_length: 60
+            show_signature_annotations: true
+            show_root_toc_entry: false
+            show_symbol_type_heading: true
