@@ -288,13 +288,14 @@ def updateSetting(name :dict, keyData :str): # Option Update function
                     print(f'Name of Setting {key} and is, {name[key]["val"]}  | Info {name[key]["infoShort"]} ')
                     
                     forBoolInput = input("Type true or false.: ")
-                    if forBoolInput == 'true':
+                   
+                    if forBoolInput.lower() == 'true':
                          optionsDataSet[key]["val"] = True
                          print(f"Set to { optionsDataSet[key]["val"]}")
                          optionsSaver(optionsDataSet)
                          break
                     
-                    elif forBoolInput == 'false':
+                    elif forBoolInput.lower() == 'false':
                          optionsDataSet[key]["val"] = False
                          print(f"Set to { optionsDataSet[key]["val"]}")
                          optionsSaver(optionsDataSet)
