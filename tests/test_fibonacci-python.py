@@ -2,9 +2,9 @@ import sys
 import importlib
 from io import StringIO
 
-## sys.path.append('../.')
+sys.path.append("../.")
 fibonacci = importlib.import_module("fibonacci-python")
-### todo
+### todo add tests
 
 
 def test_calc(capsys):
@@ -51,5 +51,13 @@ def test_calc(capsys):
 #     fibonacci.options()
 #     captured = capsys.readouterr()
 
+
 #     assert "Help" in captured.out
 #     assert "Help" in captured.out
+def test_setup(monkeypatch, capsys):
+
+    testInput = StringIO("5")
+    monkeypatch.setattr("sys.stdin", testInput)
+    fibonacci.setup()
+    captured = capsys.readouterr()
+    assert "Runs Fibonacci.Set for 5 times." in captured.out

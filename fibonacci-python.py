@@ -250,7 +250,7 @@ def options():  # options View
     print("e for exit,h for help,i for info,u for update")
 
     while True:
-        
+
         inputVal = input("Text (Listed Only).: ")
 
         if any(char.lower() == "e" for char in inputVal):  # Lode setup
