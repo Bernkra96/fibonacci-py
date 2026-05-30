@@ -1,5 +1,4 @@
 """Fibonacci sequence"""
-
 import typing
 import json
 import os
@@ -26,11 +25,12 @@ optionsDataPreset = {
 
 limString = 0  # set limit for int to string conversion // 0 for unlimited
 sys.set_int_max_str_digits(limString)
-
+neatOptionsFix = False 
 
 def optionsLoader():
     """Load Options file or make new if not three"""
     global optionsDataSet
+    global neatOptionsFix
 
     with open(
         "options.json", "a"
@@ -45,19 +45,35 @@ def optionsLoader():
         if len(optionsDataSet.keys()) != len(
             optionsDataPreset.keys()
         ):  # Fix options if missing keys and Load preset
-            optionsDataSetFile.seek(0)
-            json.dump(optionsDataPreset, optionsDataSetFile)
-            optionsDataSetFile.truncate()
-            optionsDataSet = json.load(optionsDataSetFile)  # Load options
+            
+            neatOptionsFix = True
+            
+         # Load options
 
+        # Load options
         optionsDataSetFile.close
+
+def optionsHelperUpdate():
+     global neatOptionsFix
+
+     with open("options.json", "r+") as optionsDataSetFile:
+   
+   
+        optionsDataSetFile.seek(0)
+        json.dump(optionsDataPreset, optionsDataSetFile)
+        optionsDataSetFile.truncate()
+   
+        neatOptionsFix = False
+    
+    
+
 
 
 def optionsSaver(data: dict):  # Save Data to File
     """Save data to File
 
     Args:
-        data (dict): Python dictionary
+        data (dict): Python dictionaryy
     """
 
     global optionsDataSet
@@ -378,6 +394,10 @@ def updateSetting(name: dict, keyData: str):  # Option Update function
 
 if __name__ == "__main__":  # Main warper git
     optionsLoader()
+    if neatOptionsFix :
+        optionsHelperUpdate()
+        optionsLoader()
+
     setup()
     calc(optionsDataSet["startValA"]["val"], optionsDataSet["startValB"]["val"], runFor)
     printResult()

@@ -56,23 +56,18 @@ def test_calc(capsys):
 #     assert "Help" in captured.out
 def test_setup(monkeypatch, capsys):
 
-    # testInput = StringIO("5")
-    # monkeypatch.setattr("sys.stdin", testInput)
-    # fibonacci.setup()
-    # captured = capsys.readouterr()
-    # assert "Runs Fibonacci.Set for 5 times." in captured.out
-
-    # testInput = StringIO("0")
-    # monkeypatch.setattr("sys.stdin", testInput)
-    # fibonacci.setup()
-    # captured = capsys.readouterr()
-    # assert "Runs Fibonacci.Set for 0 times." in captured.out
-
-    testInput = StringIO("G")
+    testInput = StringIO("5")
     monkeypatch.setattr("sys.stdin", testInput)
     fibonacci.setup()
     captured = capsys.readouterr()
-    assert "Is not Valid InT or Text." in captured.out
+    assert "Runs Fibonacci.Set for 5 times." in captured.out
+
+    testInput = StringIO("0")
+    monkeypatch.setattr("sys.stdin", testInput)
+    fibonacci.setup()
+    captured = capsys.readouterr()
+    assert "Runs Fibonacci.Set for 0 times." in captured.out
+
 
 
 
