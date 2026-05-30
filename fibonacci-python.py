@@ -51,12 +51,14 @@ def optionsLoader():
          # Load options
 
         # Load options
-        optionsDataSetFile.close
+       
 
 def optionsHelperUpdate():
-     global neatOptionsFix
+    """ Fixes Save JSON if key is missing   
+    """
+    global neatOptionsFix
 
-     with open("options.json", "r+") as optionsDataSetFile:
+    with open("options.json", "r+") as optionsDataSetFile:
    
    
         optionsDataSetFile.seek(0)
@@ -65,22 +67,17 @@ def optionsHelperUpdate():
    
         neatOptionsFix = False
     
-    
-
-
-
 def optionsSaver(data: dict):  # Save Data to File
     """Save data to File
 
     Args:
-        data (dict): Python dictionaryy
+        data (dict): Python dictionary
     """
 
     global optionsDataSet
     with open("options.json", "w") as optionsDataSetFile:
         json.dump(data, optionsDataSetFile)
     optionsDataSetFile.close
-
 
 def setup():  # Setup for run. Arks for N Target and opens Options
     """
@@ -142,7 +139,6 @@ def setup():  # Setup for run. Arks for N Target and opens Options
             print(f"Runs Fibonacci.Set for {runFor} times.")
             break
 
-
 def calc(a: int, b: int, runFor: int) -> None:  # Runs  Fibonacci calc
     """Calcs  Fibonacci for runFor Val
 
@@ -172,7 +168,6 @@ def calc(a: int, b: int, runFor: int) -> None:  # Runs  Fibonacci calc
         B = C
 
     endTime = time.time()  # END Time
-
 
 def printResult():  # Result Printer in Terminal and result File
     """Result Printer in Terminal And Text File  or error if no run"""
@@ -256,7 +251,6 @@ def printResult():  # Result Printer in Terminal and result File
 
         print(f'Error No Run. "Run for N" to wars Set to 0.')
 
-
 def options():  # options View
     """Options  Select and Show
 
@@ -302,7 +296,6 @@ def options():  # options View
 
             warnings.warn("No Valet input")
 
-
 def updaterOptions():  # options Update Selector
     """options Update Selector
 
@@ -334,7 +327,6 @@ def updaterOptions():  # options Update Selector
             break
         else:
             raise ValueError("No valid input ")
-
 
 def updateSetting(name: dict, keyData: str):  # Option Update function
     """Update Option val with input Checking
@@ -391,10 +383,9 @@ def updateSetting(name: dict, keyData: str):  # Option Update function
 
     options()
 
-
 if __name__ == "__main__":  # Main warper git
     optionsLoader()
-    if neatOptionsFix :
+    if neatOptionsFix:
         optionsHelperUpdate()
         optionsLoader()
 
