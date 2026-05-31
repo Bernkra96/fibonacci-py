@@ -70,7 +70,6 @@ def test_setup(monkeypatch, capsys):
     captured = capsys.readouterr()
     assert "Runs Fibonacci.Set for 0 times." in captured.out
 
-   
     testInput = StringIO("q")
     monkeypatch.setattr("sys.stdin", testInput) 
     with  pytest.raises(SystemExit) as exc:
