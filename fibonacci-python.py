@@ -126,7 +126,7 @@ def setup():  # Setup for run. Arks for N Target and opens Options
 
         elif any(char.lower() == "q" for char in inputVal):  # Close Program
             print("Quit")
-            sys.exit()
+            sys.exit(0)
             break
 
         else:  # Run with PreSetNum if no valid input. Break Loop to lode next calc Functions
