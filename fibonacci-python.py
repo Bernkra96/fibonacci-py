@@ -6,6 +6,16 @@ import sys
 import time
 import warnings
 
+
+# todo / ideas
+#  
+# Rest options File 
+#  make ist option to rest all options / one 
+
+
+
+
+
 # Options preset #"":{"val": "" ,"infoShort":""}
 
 optionsDataPreset = {
