@@ -61,6 +61,7 @@ def optionsHelperUpdate():
 
     with open("options.json", "r+") as optionsDataSetFile:
         
+        newOptions = optionsDataPreset.copy()
         optionsFromFile = json.load(optionsDataSetFile)
         print(type((optionsFromFile)))
          
@@ -70,17 +71,20 @@ def optionsHelperUpdate():
 
             for eachFileOption in range(int(len(optionsFromFile.keys()))):
                 keyFile = list(optionsFromFile.keys())[eachFileOption] 
+
                 
-                if  keyPreset == keyFile:
+                
+                if  keyFile in keyPreset:
                      
-                     print( keyPreset , keyFile)
-                     print(optionsDataPreset[keyPreset]["val"],optionsFromFile[keyFile]["val"])
-                     
+                    newOptions[keyFile]["val"] = optionsFromFile[keyFile]["val"]
+                   
+              
+                    
                       
         
         
         optionsDataSetFile.seek(0)
-        json.dump(optionsDataPreset, optionsDataSetFile)
+        json.dump(newOptions, optionsDataSetFile)
         optionsDataSetFile.truncate()
    
     neatOptionsFix = False
