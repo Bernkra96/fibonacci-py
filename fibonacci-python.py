@@ -25,7 +25,7 @@ optionsDataPreset = {
 
 limString = 0  # set limit for int to string conversion // 0 for unlimited
 sys.set_int_max_str_digits(limString)
-neatOptionsFix = True 
+neatOptionsFix = False 
 
 def optionsLoader():
     """Load Options file or make new if not three"""
