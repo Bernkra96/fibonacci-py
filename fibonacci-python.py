@@ -25,7 +25,7 @@ optionsDataPreset = {
 
 limString = 0  # set limit for int to string conversion // 0 for unlimited
 sys.set_int_max_str_digits(limString)
-neatOptionsFix = False 
+neatOptionsFix = True 
 
 def optionsLoader():
     """Load Options file or make new if not three"""
@@ -57,15 +57,33 @@ def optionsHelperUpdate():
     """ Fixes Save JSON if key is missing   
     """
     global neatOptionsFix
+   
 
     with open("options.json", "r+") as optionsDataSetFile:
-   
-   
+        
+        optionsFromFile = json.load(optionsDataSetFile)
+        print(type((optionsFromFile)))
+         
+        for eachPresetOption in range(int(len(optionsDataPreset.keys()))):
+            keyPreset = list(optionsDataPreset.keys())[eachPresetOption]
+              
+
+            for eachFileOption in range(int(len(optionsFromFile.keys()))):
+                keyFile = list(optionsFromFile.keys())[eachFileOption] 
+                
+                if  keyPreset == keyFile:
+                     
+                     print( keyPreset , keyFile)
+                     print(optionsDataPreset[keyPreset]["val"],optionsFromFile[keyFile]["val"])
+                     
+                      
+        
+        
         optionsDataSetFile.seek(0)
         json.dump(optionsDataPreset, optionsDataSetFile)
         optionsDataSetFile.truncate()
    
-        neatOptionsFix = False
+    neatOptionsFix = False
     
 def optionsSaver(data: dict):  # Save Data to File
     """Save data to File
