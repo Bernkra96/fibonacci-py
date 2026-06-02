@@ -35,7 +35,7 @@ optionsDataPreset = {
 
 limString = 0  # set limit for int to string conversion // 0 for unlimited
 sys.set_int_max_str_digits(limString)
-neatOptionsFix = False 
+neatOptionsFix = True 
 
 def optionsLoader():
     """Load Options file or make new if not three"""
@@ -73,7 +73,7 @@ def optionsHelperUpdate():
         
         newOptions = optionsDataPreset.copy()
         optionsFromFile = json.load(optionsDataSetFile)
-        print(type((optionsFromFile)))
+        #  print(type((optionsFromFile)))
          
         for eachPresetOption in range(int(len(optionsDataPreset.keys()))):
             keyPreset = list(optionsDataPreset.keys())[eachPresetOption]
@@ -82,6 +82,7 @@ def optionsHelperUpdate():
             for eachFileOption in range(int(len(optionsFromFile.keys()))):
                 keyFile = list(optionsFromFile.keys())[eachFileOption] 
 
+                
                 
                 
                 if  keyFile in keyPreset:
@@ -323,6 +324,12 @@ def options():  # options View
             print("Update")
             updaterOptions()
             break
+
+        elif any(char.lower() == "q" for char in inputVal):  # Close Program
+            print("Quit")
+            sys.exit(0)
+            break
+
 
         else:
 
