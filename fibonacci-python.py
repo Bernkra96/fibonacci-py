@@ -11,6 +11,10 @@ import warnings
 #  
 # Rest options File 
 #  make ist option to rest all options / one 
+# fix options aus  optionsLoader auslagern 
+
+# make local optionsDataSet (inout return  )
+
 
 
 
@@ -18,7 +22,7 @@ import warnings
 
 # Options preset #"":{"val": "" ,"infoShort":""}
 
-optionsDataPreset = {
+OPTIONS_DATA_PRESET = {
     "EndTimer": {"val": True, "infoShort": " Want to Run End timer?"},
     "TimeEndTimer": {"val": 2, "infoShort": "Set EndTimer Length in sek."},
     "PrintEndResult": {"val": True, "infoShort": "Print Result in Console"},
@@ -33,31 +37,31 @@ optionsDataPreset = {
 
 # Limit for int to string conversion
 
-limString = 0  # set limit for int to string conversion // 0 for unlimited
-sys.set_int_max_str_digits(limString)
-neatOptionsFix = True 
+LIMIT_STRING = 0  # set limit for int to string conversion // 0 for unlimited
+sys.set_int_max_str_digits(LIMIT_STRING)
+#NEED_OPTIONS_FIX = False 
 
 def optionsLoader():
     """Load Options file or make new if not three"""
     global optionsDataSet
-    global neatOptionsFix
+    global NEED_OPTIONS_FIX
 
     with open(
         "options.json", "a"
     ) as optionsDataSetFile:  # Check if file has data if not Load preset
         if os.path.getsize("options.json") == 0:
             print("options Empty")
-            json.dump(optionsDataPreset, optionsDataSetFile)
+            json.dump(OPTIONS_DATA_PRESET, optionsDataSetFile)
 
     with open("options.json", "r+") as optionsDataSetFile:
 
         optionsDataSet = json.load(optionsDataSetFile)  # Load options
         if len(optionsDataSet.keys()) != len(
-            optionsDataPreset.keys()
+            OPTIONS_DATA_PRESET.keys()
         ):  # Fix options if missing keys and Load preset
             
-            neatOptionsFix = True
-            
+           # NEED_OPTIONS_FIX = True
+            optionsHelperUpdate()
          # Load options
 
         # Load options
@@ -66,17 +70,17 @@ def optionsLoader():
 def optionsHelperUpdate():
     """ Fixes Save JSON if key is missing   
     """
-    global neatOptionsFix
+    # global NEED_OPTIONS_FIX
    
 
     with open("options.json", "r+") as optionsDataSetFile:
         
-        newOptions = optionsDataPreset.copy()
+        newOptions = OPTIONS_DATA_PRESET.copy()
         optionsFromFile = json.load(optionsDataSetFile)
         #  print(type((optionsFromFile)))
          
-        for eachPresetOption in range(int(len(optionsDataPreset.keys()))):
-            keyPreset = list(optionsDataPreset.keys())[eachPresetOption]
+        for eachPresetOption in range(int(len(OPTIONS_DATA_PRESET.keys()))):
+            keyPreset = list(OPTIONS_DATA_PRESET.keys())[eachPresetOption]
               
 
             for eachFileOption in range(int(len(optionsFromFile.keys()))):
@@ -92,13 +96,12 @@ def optionsHelperUpdate():
               
                     
                       
-        
-        
-        optionsDataSetFile.seek(0)
-        json.dump(newOptions, optionsDataSetFile)
-        optionsDataSetFile.truncate()
+      
+       
+        optionsSaver(newOptions)
+      
    
-    neatOptionsFix = False
+    # NEED_OPTIONS_FIX = False
     
 def optionsSaver(data: dict):  # Save Data to File
     """Save data to File
@@ -420,10 +423,11 @@ def updateSetting(name: dict, keyData: str):  # Option Update function
 
 if __name__ == "__main__":  # Main warper git
     optionsLoader()
-    if neatOptionsFix:
-        optionsHelperUpdate()
-        optionsLoader()
-
+    # optionsDataSet = optionsLoader()
+    # if NEED_OPTIONS_FIX:
+    #     optionsHelperUpdate()
+    #     optionsLoader()
+    optionsLoader()
     setup()
     calc(optionsDataSet["startValA"]["val"], optionsDataSet["startValB"]["val"], runFor)
     printResult()
