@@ -63,7 +63,7 @@ def optionsLoader():
            # NEED_OPTIONS_FIX = True
             optionsHelperUpdate()
          # Load options
-
+    return optionsDataSet
         # Load options
        
 
@@ -141,7 +141,7 @@ def setup():  # Setup for run. Arks for N Target and opens Options
 
             runFor = inputVal
             print(f"Runs Fibonacci.Set for {runFor} times.")
-            break
+            return runFor
 
         elif any(char.lower() == "o" for char in inputVal):  # Lode options
 
@@ -173,7 +173,8 @@ def setup():  # Setup for run. Arks for N Target and opens Options
 
             runFor = inputVal
             print(f"Runs Fibonacci.Set for {runFor} times.")
-            break
+            return runFor
+            
 
 def calc(a: int, b: int, runFor: int) -> None:  # Runs  Fibonacci calc
     """Calcs  Fibonacci for runFor Val
@@ -422,13 +423,13 @@ def updateSetting(name: dict, keyData: str):  # Option Update function
     options()
 
 if __name__ == "__main__":  # Main warper git
-    optionsLoader()
-    # optionsDataSet = optionsLoader()
+    
+    optionsDataSet = optionsLoader()
     # if NEED_OPTIONS_FIX:
     #     optionsHelperUpdate()
     #     optionsLoader()
-    optionsLoader()
-    setup()
+   
+    runFor = setup()
     calc(optionsDataSet["startValA"]["val"], optionsDataSet["startValB"]["val"], runFor)
     printResult()
     optionsSaver(optionsDataSet)
