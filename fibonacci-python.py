@@ -325,11 +325,7 @@ def options():  # options View
             updaterOptions()
             break
 
-        elif any(char.lower() == "q" for char in inputVal):  # Close Program
-            print("Quit")
-            sys.exit(0)
-            break
-
+      
 
         else:
 
@@ -362,7 +358,7 @@ def updaterOptions():  # options Update Selector
             updateSetting(optionsDataSet, selectOptionsUserInput)
             break
         elif any(char.lower() == "e" for char in selectOptionsUserInput):
-            options()
+            options(optionsDataSet)
             break
         else:
             raise ValueError("No valid input ")

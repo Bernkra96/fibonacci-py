@@ -47,21 +47,32 @@ def test_calc(capsys):
 
 
 def test_options(monkeypatch, capsys):
-      
-    # global optionsDataPreset
     
-    # optionsDataPreset = {
-    # "EndTimer": {"val": True, "infoShort": " Want to Run End timer?"},
-    # "TimeEndTimer": {"val": 2, "infoShort": "Set EndTimer Length in sek."},
-    # "PrintEndResult": {"val": True, "infoShort": "Print Result in Console"},
-    # "SaveEndResult": {"val": True, "infoShort": "Save Result as in Text File "},
-    # "startValA": {"val": 0, "infoShort": "Start Val A"},
-    # "startValB": {"val": 1, "infoShort": "Start Val B"},
-    # "PresetNumberRuns": {
-    #     "val": 1000,
-    #     "infoShort": "Number of Run if preset if no input ",
-    # # },}
-    # optionsDataSet = optionsDataSet.copy
+    
+    
+    testInput =  StringIO("i")
+    monkeypatch.setattr("sys.stdin", testInput)
+    fibonacci.optionsLoader()
+    # Eof for While True Loop
+    with pytest.raises(EOFError) as eof:
+        fibonacci.options()
+    captured = capsys.readouterr()
+    assert ("Info") in captured.out
+
+      
+
+    testInput =  StringIO("u")
+    monkeypatch.setattr("sys.stdin", testInput)
+    fibonacci.optionsLoader()
+    # Eof for While True Loop
+    with pytest.raises(EOFError) as eof:
+        fibonacci.options()
+    captured = capsys.readouterr()
+    assert ("Update") in captured.out
+
+
+
+
     testInput = StringIO("h")
     monkeypatch.setattr("sys.stdin", testInput)
     fibonacci.optionsLoader()
@@ -79,31 +90,31 @@ def test_options(monkeypatch, capsys):
 def test_setup(monkeypatch, capsys):
     global optionsDataSet
       
-    # testInput = StringIO("5")
-    # monkeypatch.setattr("sys.stdin", testInput)
-    # fibonacci.setup()
-    # captured = capsys.readouterr()
-    # assert "Runs Fibonacci.Set for 5 times." in captured.out
+    testInput = StringIO("5")
+    monkeypatch.setattr("sys.stdin", testInput)
+    fibonacci.setup()
+    captured = capsys.readouterr()
+    assert "Runs Fibonacci.Set for 5 times." in captured.out
 
-    # testInput = StringIO("0")
-    # monkeypatch.setattr("sys.stdin", testInput)
-    # fibonacci.setup()
-    # captured = capsys.readouterr()
-    # assert "Runs Fibonacci.Set for 0 times." in captured.out
+    testInput = StringIO("0")
+    monkeypatch.setattr("sys.stdin", testInput)
+    fibonacci.setup()
+    captured = capsys.readouterr()
+    assert "Runs Fibonacci.Set for 0 times." in captured.out
 
     
 
-    optionsDataSet = {
-    "EndTimer": {"val": True, "infoShort": " Want to Run End timer?"},
-    "TimeEndTimer": {"val": 2, "infoShort": "Set EndTimer Length in sek."},
-    "PrintEndResult": {"val": True, "infoShort": "Print Result in Console"},
-    "SaveEndResult": {"val": True, "infoShort": "Save Result as in Text File "},
-    "startValA": {"val": 0, "infoShort": "Start Val A"},
-    "startValB": {"val": 1, "infoShort": "Start Val B"},
-    "PresetNumberRuns": {
-        "val": 1000,
-        "infoShort": "Number of Run if preset if no input ",
-    },}
+    # optionsDataSet = {
+    # "EndTimer": {"val": True, "infoShort": " Want to Run End timer?"},
+    # "TimeEndTimer": {"val": 2, "infoShort": "Set EndTimer Length in sek."},
+    # "PrintEndResult": {"val": True, "infoShort": "Print Result in Console"},
+    # "SaveEndResult": {"val": True, "infoShort": "Save Result as in Text File "},
+    # "startValA": {"val": 0, "infoShort": "Start Val A"},
+    # "startValB": {"val": 1, "infoShort": "Start Val B"},
+    # "PresetNumberRuns": {
+    #     "val": 1000,
+    #     "infoShort": "Number of Run if preset if no input ",
+    # },}
     
     
     testInput = StringIO("s")
@@ -114,10 +125,13 @@ def test_setup(monkeypatch, capsys):
     captured = capsys.readouterr()
     assert "Update witch Option ?" in captured.out
 
-    # testInput = StringIO("o")
-    # monkeypatch.setattr("sys.stdin", testInput)
-    # fibonacci.setup()
-    # captured = capsys.readouterr()
+    testInput = StringIO("o")
+    monkeypatch.setattr("sys.stdin", testInput)
+    fibonacci.optionsLoader()
+    with pytest.raises(EOFError) as eof:
+      fibonacci.setup()
+    captured = capsys.readouterr()
+    assert "Options" in captured.out
 
     testInput = StringIO("q")
     monkeypatch.setattr("sys.stdin", testInput) 
