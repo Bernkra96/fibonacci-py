@@ -141,7 +141,7 @@ def setup():  # Setup for run. Arks for N Target and opens Options
 
             runFor = inputVal
             print(f"Runs Fibonacci.Set for {runFor} times.")
-            returngit runFor
+            return runFor
 
         elif any(char.lower() == "o" for char in inputVal):  # Lode options
 
