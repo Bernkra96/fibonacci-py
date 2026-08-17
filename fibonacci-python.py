@@ -11,6 +11,10 @@ import warnings
 #  
 # Rest options File 
 #  make ist option to rest all options / one 
+# fix options aus  optionsLoader auslagern 
+
+# make local optionsDataSet (inout return  )
+
 
 
 
@@ -18,7 +22,7 @@ import warnings
 
 # Options preset #"":{"val": "" ,"infoShort":""}
 
-optionsDataPreset = {
+OPTIONS_DATA_PRESET = {
     "EndTimer": {"val": True, "infoShort": " Want to Run End timer?"},
     "TimeEndTimer": {"val": 2, "infoShort": "Set EndTimer Length in sek."},
     "PrintEndResult": {"val": True, "infoShort": "Print Result in Console"},
@@ -33,50 +37,51 @@ optionsDataPreset = {
 
 # Limit for int to string conversion
 
-limString = 0  # set limit for int to string conversion // 0 for unlimited
-sys.set_int_max_str_digits(limString)
-neatOptionsFix = True 
+LIMIT_STRING = 0  # set limit for int to string conversion // 0 for unlimited
+sys.set_int_max_str_digits(LIMIT_STRING)
+#NEED_OPTIONS_FIX = False 
 
 def optionsLoader():
-    """Load Options file or make new if not three"""
+    """Loado Options file or make new if not three"""
     global optionsDataSet
-    global neatOptionsFix
+    global NEED_OPTIONS_FIX
 
     with open(
         "options.json", "a"
     ) as optionsDataSetFile:  # Check if file has data if not Load preset
         if os.path.getsize("options.json") == 0:
             print("options Empty")
-            json.dump(optionsDataPreset, optionsDataSetFile)
+            json.dump(OPTIONS_DATA_PRESET, optionsDataSetFile)
 
     with open("options.json", "r+") as optionsDataSetFile:
 
         optionsDataSet = json.load(optionsDataSetFile)  # Load options
         if len(optionsDataSet.keys()) != len(
-            optionsDataPreset.keys()
+            OPTIONS_DATA_PRESET.keys()
         ):  # Fix options if missing keys and Load preset
             
-            neatOptionsFix = True
-            
+           # NEED_OPTIONS_FIX = True
+            optionsHelperUpdate()
          # Load options
-
+    
+    return optionsDataSet
         # Load options
        
 
 def optionsHelperUpdate():
     """ Fixes Save JSON if key is missing   
     """
-    global neatOptionsFix
+    # global NEED_OPTIONS_FIX
    
 
     with open("options.json", "r+") as optionsDataSetFile:
         
-        newOptions = optionsDataPreset.copy()
+        newOptions = OPTIONS_DATA_PRESET.copy()
         optionsFromFile = json.load(optionsDataSetFile)
         #  print(type((optionsFromFile)))
          
-        for eachPresetOption in range(int(len(optionsDataPreset.keys()))):
-            keyPreset = list(optionsDataPreset.keys())[eachPresetOption]
+        for eachPresetOption in range(int(len(OPTIONS_DATA_PRESET.keys()))):
+            keyPreset = list(OPTIONS_DATA_PRESET.keys())[eachPresetOption]
               
 
             for eachFileOption in range(int(len(optionsFromFile.keys()))):
@@ -92,13 +97,12 @@ def optionsHelperUpdate():
               
                     
                       
-        
-        
-        optionsDataSetFile.seek(0)
-        json.dump(newOptions, optionsDataSetFile)
-        optionsDataSetFile.truncate()
+      
+       
+        optionsSaver(newOptions)
+      
    
-    neatOptionsFix = False
+    # NEED_OPTIONS_FIX = False
     
 def optionsSaver(data: dict):  # Save Data to File
     """Save data to File
@@ -112,7 +116,7 @@ def optionsSaver(data: dict):  # Save Data to File
         json.dump(data, optionsDataSetFile)
     optionsDataSetFile.close
 
-def setup():  # Setup for run. Arks for N Target and opens Options
+def setup(data: dict):  # Setup for run. Arks for N Target and opens Options
     """
     Setup for run. Arks for N Target and opens Options
 
@@ -120,8 +124,6 @@ def setup():  # Setup for run. Arks for N Target and opens Options
          inputVal : user input Number of Runs or string for options select
     """
 
-    global runFor
-    global inputVal
     print("─────────────────────────────────────────────────────────"),
     print("Hallo Welcome.")
     print("To this Fibonacci Runner / Benchmark.")
@@ -138,23 +140,23 @@ def setup():  # Setup for run. Arks for N Target and opens Options
 
             runFor = inputVal
             print(f"Runs Fibonacci.Set for {runFor} times.")
-            break
+            return runFor
 
         elif any(char.lower() == "o" for char in inputVal):  # Lode options
 
-            options()
+            options(data)
             break
         elif any(char.lower() == "s" for char in inputVal):  # Lode Setup
 
             print("Update witch Option ?")
 
-            for i in range(int(len(optionsDataSet))):
-                key = list(optionsDataSet.keys())[i]
+            for i in range(int(len(data))):
+                key = list(data.keys())[i]
                 print(
-                    f"DataName {key} │  DataValue {optionsDataSet[key]["val"]} │  Info: {optionsDataSet[key]["infoShort"]}"
+                    f"DataName {key} │  DataValue {data[key]["val"]} │  Info: {data[key]["infoShort"]}"
                 )
 
-            setup()
+            setup(data)
             break
 
         elif any(char.lower() == "q" for char in inputVal):  # Close Program
@@ -166,11 +168,12 @@ def setup():  # Setup for run. Arks for N Target and opens Options
 
             print("Is not Valid InT or Text.")
             print("Run Prest Int.")
-            inputVal = int(optionsDataSet["PresetNumberRuns"]["val"])
+            inputVal = int(data["PresetNumberRuns"]["val"])
 
-            runFor = inputVal
+            runFor = int(inputVal)
             print(f"Runs Fibonacci.Set for {runFor} times.")
-            break
+            return runFor
+            
 
 def calc(a: int, b: int, runFor: int) -> None:  # Runs  Fibonacci calc
     """Calcs  Fibonacci for runFor Val
@@ -284,7 +287,7 @@ def printResult():  # Result Printer in Terminal and result File
 
         print(f'Error No Run. "Run for N" to wars Set to 0.')
 
-def options():  # options View
+def options(data: dict):  # options View
     """Options  Select and Show
 
     inputVal : user input Number of Runs or string for options select
@@ -297,7 +300,7 @@ def options():  # options View
         inputVal = input("Text (Listed Only).: ")
 
         if any(char.lower() == "e" for char in inputVal):  # Lode setup
-            setup()
+            setup(data)
             break
         elif any(char.lower() == "h" for char in inputVal):  # Show help
             print("Help")
@@ -314,10 +317,10 @@ def options():  # options View
             print("Info")
             print("Update witch Option ?")
 
-            for i in range(int(len(optionsDataSet))):
-                key = list(optionsDataSet.keys())[i]
+            for i in range(int(len(data))):
+                key = list(data.keys())[i]
                 print(
-                    f"DataName {key} │  DataValue {optionsDataSet[key]["val"]} │  Info: {optionsDataSet[key]["infoShort"]}"
+                    f"DataName {key} │  DataValue {data[key]["val"]} │  Info: {data[key]["infoShort"]}"
                 )
 
         elif any(char.lower() == "u" for char in inputVal):  # Lode updaterForOptions
@@ -325,11 +328,7 @@ def options():  # options View
             updaterOptions()
             break
 
-        elif any(char.lower() == "q" for char in inputVal):  # Close Program
-            print("Quit")
-            sys.exit(0)
-            break
-
+      
 
         else:
 
@@ -362,7 +361,7 @@ def updaterOptions():  # options Update Selector
             updateSetting(optionsDataSet, selectOptionsUserInput)
             break
         elif any(char.lower() == "e" for char in selectOptionsUserInput):
-            options()
+            options(optionsDataSet)
             break
         else:
             raise ValueError("No valid input ")
@@ -420,15 +419,16 @@ def updateSetting(name: dict, keyData: str):  # Option Update function
             case _:
                 raise ValueError("No valid input ")
 
-    options()
+    options(optionsDataSet)
 
 if __name__ == "__main__":  # Main warper git
-    optionsLoader()
-    if neatOptionsFix:
-        optionsHelperUpdate()
-        optionsLoader()
-
-    setup()
+    
+    optionsDataSet = optionsLoader()
+    # if NEED_OPTIONS_FIX:
+    #     optionsHelperUpdate()
+    #     optionsLoader()
+   
+    runFor = setup(optionsDataSet)
     calc(optionsDataSet["startValA"]["val"], optionsDataSet["startValB"]["val"], runFor)
     printResult()
     optionsSaver(optionsDataSet)
